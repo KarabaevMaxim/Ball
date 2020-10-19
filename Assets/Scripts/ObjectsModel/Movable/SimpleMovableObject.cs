@@ -9,7 +9,8 @@ namespace ObjectsModel.Movable
     
     public override void StartMove(Vector3 targetPos)
     {
-      _moveCoroutine = StartCoroutine(Moving(targetPos));
+      if (_moveCoroutine != null)
+        _moveCoroutine = StartCoroutine(Moving(targetPos));
     }
 
     public override void StopMove()
@@ -31,6 +32,7 @@ namespace ObjectsModel.Movable
       }
 
       gameObject.transform.position = targetPos;
+      _moveCoroutine = null;
     }
   }
 }

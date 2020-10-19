@@ -7,9 +7,12 @@ namespace ObjectsModel.Jumpable
 {
   public class BezierJumpableObject : JumpableObjectBase
   {
+    private bool _isJumping;
+    
     public override void StartJump(float targetY, TimeSpan time)
     {
-      StartCoroutine(Jumping(targetY, (float)time.TotalSeconds));
+      if(!_isJumping)
+        StartCoroutine(Jumping(targetY, (float)time.TotalSeconds));
     }
     
     private IEnumerator Jumping(float targetY, float timeInSec)
@@ -18,7 +21,8 @@ namespace ObjectsModel.Jumpable
       var thisTransform = gameObject.transform;
       var startPosition = transform.position;
       var heightForBezier = JumpHeight * 2;
-        
+      _isJumping = true;  
+      
       while (step <= timeInSec)
       {
         step += Time.deltaTime;
@@ -28,6 +32,7 @@ namespace ObjectsModel.Jumpable
       }
     
       thisTransform.position = new Vector3(thisTransform.position.x, targetY, thisTransform.position.z);
+      _isJumping = false;
     }
   }
 }

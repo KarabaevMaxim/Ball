@@ -5,7 +5,7 @@ namespace ObjectsModel.Movable
   public abstract class MovableObjectBase : MonoBehaviour, IMovableObject
   {
     [SerializeField]
-    private float _moveSpeed;
+    private float _moveSpeed = default;
 
     protected float MoveSpeed => _moveSpeed;
 

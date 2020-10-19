@@ -6,7 +6,7 @@ namespace ObjectsModel.Jumpable
   public abstract class JumpableObjectBase : MonoBehaviour, IJumpableObject
   {
     [SerializeField]
-    private float _jumpHeight;
+    private float _jumpHeight = default;
 
     protected float JumpHeight => _jumpHeight;
 
