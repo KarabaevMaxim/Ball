@@ -1,8 +1,6 @@
 {
-    "name": "ObjectsModel",
-    "references": [
-        "GUID:3f87efe9cde8c47f0a649afd76461f09"
-    ],
+    "name": "Infrastructure",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
