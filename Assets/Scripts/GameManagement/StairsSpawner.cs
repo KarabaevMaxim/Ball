@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common;
+using Common.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +15,9 @@ namespace GameManagement
     
     private Queue<StairsObject> _activeStairs;
     private StairsObject _lastStairs;
-    
+
+    private SignalBus _signalBus;
+
     public void SpawnOnStart()
     {
       for (var i = 0; i < StartStairsCount; i++)
@@ -32,6 +35,7 @@ namespace GameManagement
       
       _lastStairs = obj;
       _activeStairs.Enqueue(obj);
+      _signalBus.Fire(new StairsSpawnedSignal(_lastStairs.StairsCoords));
     }
 
     public void DespawnFirst()
@@ -40,10 +44,11 @@ namespace GameManagement
     }
 
     [Inject]
-    private void Initialize(IEnvironmentProps environmentProps, Pool pool)
+    private void Initialize(IEnvironmentProps environmentProps, Pool pool, SignalBus signalBus)
     {
       _pool = pool;
       _activeStairs = new Queue<StairsObject>(StartStairsCount);
+      _signalBus = signalBus;
     }
     
     public class Factory : PlaceholderFactory<Object, StairsObject>

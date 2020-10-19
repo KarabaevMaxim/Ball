@@ -51,6 +51,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 5
   _length: 5
+  _stairsCoords:
+  - _y: 0
+    _z: 0
+  - _y: 0
+    _z: 0
+  - _y: 0
+    _z: 0
+  - _y: 0
+    _z: 0
+  - _y: 0
+    _z: 0
 --- !u!1 &3421019441082032747
 GameObject:
   m_ObjectHideFlags: 0

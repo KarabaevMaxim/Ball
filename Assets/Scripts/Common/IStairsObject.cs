@@ -1,3 +1,5 @@
+using Common.Signals;
+
 namespace Common
 {
   public interface IStairsObject
@@ -5,5 +7,7 @@ namespace Common
     int Height { get; }
 
     int Length { get; }
+    
+    YZ[] StairsCoords { get; }
   }
 }
