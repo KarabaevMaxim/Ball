@@ -9,6 +9,8 @@ namespace ObjectsModel.Movable
 
     protected float MoveSpeed => _moveSpeed;
 
+    public bool IsMoving { get; protected set; }
+
     public abstract void StartMove(Vector3 targetPos);
 
     public abstract void StopMove();

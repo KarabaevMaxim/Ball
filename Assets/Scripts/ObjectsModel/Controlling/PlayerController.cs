@@ -38,23 +38,27 @@ namespace ObjectsModel.Controlling
     {
       while (true)
       {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
         {
-          _jumpableObject.StartJump(transform.position.y, TimeSpan.FromSeconds(1));
+          if (Input.GetKeyDown(KeyCode.Space))
+          {
+            _jumpableObject.StartJump(transform.position.y + 1, transform.position.z + 1, TimeSpan.FromSeconds(1));
+            //_movableObject.StartMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1));
+          }
+
+          if (Input.GetKeyDown(KeyCode.A))
+          {
+            if (_environmentProps.MinLine < transform.position.x)
+              _movableObject.StartMove(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
+          }
+
+          if (Input.GetKeyDown(KeyCode.D))
+          {
+            if (_environmentProps.MaxLine > transform.position.x)
+              _movableObject.StartMove(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
+          }
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-          if (_environmentProps.MinLine < transform.position.x)
-            _movableObject.StartMove(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-          if (_environmentProps.MaxLine > transform.position.x)
-            _movableObject.StartMove(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
-        }
-          
         yield return null;
       }
     }

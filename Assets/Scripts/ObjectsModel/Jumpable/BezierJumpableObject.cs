@@ -7,32 +7,60 @@ namespace ObjectsModel.Jumpable
 {
   public class BezierJumpableObject : JumpableObjectBase
   {
-    private bool _isJumping;
-    
     public override void StartJump(float targetY, TimeSpan time)
     {
-      if(!_isJumping)
+      if (!IsJumping)
+      {
         StartCoroutine(Jumping(targetY, (float)time.TotalSeconds));
+        IsJumping = true;
+      }
+    }
+    
+    public override void StartJump(float targetY, float targetZ, TimeSpan time)
+    {
+      if (!IsJumping)
+      {
+        StartCoroutine(Jumping(targetY, targetZ, time));
+        IsJumping = true;
+      }
     }
     
     private IEnumerator Jumping(float targetY, float timeInSec)
     {
       var step = 0.0f;
-      var thisTransform = gameObject.transform;
-      var startPosition = transform.position;
-      var heightForBezier = JumpHeight * 2;
-      _isJumping = true;  
-      
+      var startY = transform.position.y;
+      var middleY = transform.position.y + JumpHeight * 2;
+
       while (step <= timeInSec)
       {
         step += Time.deltaTime;
-        var deltaY = MathHelper.Bezier(startPosition.y, heightForBezier, targetY, step / timeInSec);
-        thisTransform.position = new Vector3(transform.position.x, deltaY, thisTransform.position.z);
+        var newY = MathHelper.Bezier(startY, middleY, targetY, step / timeInSec);
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
         yield return null;
       }
     
-      thisTransform.position = new Vector3(thisTransform.position.x, targetY, thisTransform.position.z);
-      _isJumping = false;
+      transform.position = new Vector3(transform.position.x, targetY, transform.position.z);
+      IsJumping = false;
+    }
+    
+    private IEnumerator Jumping(float targetY, float targetZ, TimeSpan jumpTime)
+    {
+      var step = 0.0f;
+      var startPosition = transform.position;
+      var middleY = transform.position.y + JumpHeight * 2;
+
+      while (step <= jumpTime.TotalSeconds)
+      {
+        step += Time.deltaTime;
+        var calculatedStep = step / (float) jumpTime.TotalSeconds;
+        var newY = MathHelper.Bezier(startPosition.y, middleY, targetY, calculatedStep);
+        var newZ = Mathf.Lerp(startPosition.z, targetZ, calculatedStep);
+        transform.position = new Vector3(transform.position.x, newY, newZ);
+        yield return null;
+      }
+
+      transform.position = new Vector3(transform.position.x, targetY, targetZ);
+      IsJumping = false;
     }
   }
 }
