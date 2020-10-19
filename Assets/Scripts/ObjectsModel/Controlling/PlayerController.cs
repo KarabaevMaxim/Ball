@@ -43,7 +43,6 @@ namespace ObjectsModel.Controlling
           if (Input.GetKeyDown(KeyCode.Space))
           {
             _jumpableObject.StartJump(transform.position.y + 1, transform.position.z + 1, TimeSpan.FromSeconds(1));
-            //_movableObject.StartMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1));
           }
 
           if (Input.GetKeyDown(KeyCode.A))
