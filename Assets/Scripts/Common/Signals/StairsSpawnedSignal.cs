@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Common.Signals
 {
   /// <summary>
@@ -5,9 +7,9 @@ namespace Common.Signals
   /// </summary>
   public readonly struct StairsSpawnedSignal
   {
-    public YZ[] StairsCoords { get; }
+    public IEnumerable<YZ> StairsCoords { get; }
     
-    public StairsSpawnedSignal(YZ[] stairsCoords)
+    public StairsSpawnedSignal(IEnumerable<YZ> stairsCoords)
     {
       StairsCoords = stairsCoords;
     }

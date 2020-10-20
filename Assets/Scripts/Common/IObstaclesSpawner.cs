@@ -1,9 +1,11 @@
+using UnityEngine;
+
 namespace Common
 {
   public interface IObstaclesSpawner
   {
-    void SpawnRandom();
+    void SpawnRandom(Vector3 position);
 
-    void Despawn();
+    void Despawn(IObstacle obj);
   }
 }

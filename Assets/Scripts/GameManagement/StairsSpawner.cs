@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Common;
 using Common.Props;
 using Common.Signals;
@@ -7,17 +8,33 @@ using Zenject;
 
 namespace GameManagement
 {
+  /// <summary>
+  /// Спавнер сегментов лестницы.
+  /// </summary>
   public class StairsSpawner : IStairsSpawner
   {
+    #region Константы
+
     private const int PoolCapacityForeachPrefab = 20;
     private const int StartStairsCount = 10;
-    
+
+    #endregion
+
+    #region Зависимости
+
     private Pool _pool;
+    private SignalBus _signalBus;
     
+    #endregion
+
+    #region Поля
+
     private Queue<StairsObject> _activeStairs;
     private StairsObject _lastStairs;
 
-    private SignalBus _signalBus;
+    #endregion
+
+    #region IStairsSpawner
 
     public void SpawnOnStart()
     {
@@ -36,13 +53,18 @@ namespace GameManagement
       
       _lastStairs = obj;
       _activeStairs.Enqueue(obj);
-      _signalBus.Fire(new StairsSpawnedSignal(_lastStairs.StairsCoords));
+      var lastPos = _lastStairs.transform.position;
+      _signalBus.Fire(new StairsSpawnedSignal(_lastStairs.StairsCoords.Select(sc => new YZ(sc.Y + lastPos.y, sc.Z + lastPos.z))));
     }
 
     public void DespawnFirst()
     {
       _pool.Despawn(_activeStairs.Dequeue());
     }
+
+    #endregion
+
+    #region Остальные методы
 
     [Inject]
     private void Initialize(IGameplayProps gameplayProps, Pool pool, SignalBus signalBus)
@@ -51,7 +73,12 @@ namespace GameManagement
       _activeStairs = new Queue<StairsObject>(StartStairsCount);
       _signalBus = signalBus;
     }
-    
+
+
+    #endregion
+
+    #region Вложенные типы
+
     public class Factory : PlaceholderFactory<Object, StairsObject>
     {
     }
@@ -88,5 +115,7 @@ namespace GameManagement
         }
       }
     }
+
+    #endregion
   }
 }

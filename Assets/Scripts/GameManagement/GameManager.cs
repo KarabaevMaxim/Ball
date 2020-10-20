@@ -8,7 +8,7 @@ namespace GameManagement
   /// <summary>
   /// Управляющий игровым режимом скрипт. 
   /// </summary>
-  public class GameManager : MonoBehaviour
+  public class GameManager : MonoBehaviour, IGameManager
   {
     #region Зависимости
 
@@ -22,6 +22,11 @@ namespace GameManagement
 
     private int _currentDifficulty;
 
+    #endregion
+
+    #region Свойства
+
+    public int CurrentDifficulty => _currentDifficulty;
 
     #endregion
 

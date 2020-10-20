@@ -22,9 +22,9 @@ namespace GameManagement.Props
     [SerializeField]
     private List<StairsObject> _stairsPrefabs;
 
-    [SerializeField]
+    [SerializeField, Range(0, 10)]
     private int _startDifficulty;
-    
+
     public int MinLine => _minLine;
 
     public int MaxLine => _maxLine;

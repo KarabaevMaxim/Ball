@@ -10,16 +10,16 @@ namespace Common
   public struct YZ
   {
     [SerializeField]
-    private int _y;
+    private float _y;
 
     [SerializeField]
-    private int _z;
+    private float _z;
 
-    public int Y => _y;
+    public float Y => _y;
 
-    public int Z => _z;
+    public float Z => _z;
 
-    public YZ(int y, int z)
+    public YZ(float y, float z)
     {
       _y = y;
       _z = z;

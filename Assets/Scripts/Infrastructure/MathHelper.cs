@@ -1,4 +1,7 @@
-﻿namespace Infrastructure
+﻿using System;
+using Random = UnityEngine.Random;
+
+namespace Infrastructure
 {
   public static class MathHelper
   {
@@ -20,6 +23,18 @@
 
       var result = (start * ((1 - t) * (1 - t))) + (middle * 2 * t * (1 - t)) + (end * (t * t));
       return result;
+    }
+    
+    public static bool GetRandomWithProbability(int probability)
+    {
+      const int min = 0;
+      const int max = 100;
+      
+      if (probability < min || probability > max)
+        throw new ArgumentOutOfRangeException(nameof(probability), $"Значение вероятности не может быть меньше {min} и больше {max}");
+
+      var value = Random.Range(min, max + 1);
+      return value <= probability;
     }
   }
 }
