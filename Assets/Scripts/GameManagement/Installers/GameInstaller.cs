@@ -3,7 +3,7 @@ using Common.Signals;
 using UnityEngine;
 using Zenject;
 
-namespace GameManagement
+namespace GameManagement.Installers
 {
   public class GameInstaller : MonoInstaller
   {

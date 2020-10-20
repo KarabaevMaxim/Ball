@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Common
 {
+  /// <summary>
+  /// Описание y и z координат для ступеней лестницы.
+  /// </summary>
   [Serializable]
   public struct YZ
   {

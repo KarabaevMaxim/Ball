@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Common;
+using Common.Props;
 using ObjectsModel.Jumpable;
 using ObjectsModel.Movable;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace ObjectsModel.Controlling
     
     private IJumpableObject _jumpableObject;
 
-    private IEnvironmentProps _environmentProps;
+    private IGameplayProps _gameplayProps;
     
     private Coroutine _mainCoroutine;
 
@@ -47,13 +48,13 @@ namespace ObjectsModel.Controlling
 
           if (Input.GetKeyDown(KeyCode.A))
           {
-            if (_environmentProps.MinLine < transform.position.x)
+            if (_gameplayProps.MinLine < transform.position.x)
               _movableObject.StartMove(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
           }
 
           if (Input.GetKeyDown(KeyCode.D))
           {
-            if (_environmentProps.MaxLine > transform.position.x)
+            if (_gameplayProps.MaxLine > transform.position.x)
               _movableObject.StartMove(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
           }
         }
@@ -63,11 +64,11 @@ namespace ObjectsModel.Controlling
     }
 
     [Inject]
-    private void Initialize(IMovableObject movableObject, IJumpableObject jumpableObject, IEnvironmentProps environmentProps)
+    private void Initialize(IMovableObject movableObject, IJumpableObject jumpableObject, IGameplayProps gameplayProps)
     {
       _movableObject = movableObject;
       _jumpableObject = jumpableObject;
-      _environmentProps = environmentProps;
+      _gameplayProps = gameplayProps;
     }
   }
 }

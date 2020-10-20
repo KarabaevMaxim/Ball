@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common;
+using Common.Props;
 using Common.Signals;
 using UnityEngine;
 using Zenject;
@@ -44,7 +45,7 @@ namespace GameManagement
     }
 
     [Inject]
-    private void Initialize(IEnvironmentProps environmentProps, Pool pool, SignalBus signalBus)
+    private void Initialize(IGameplayProps gameplayProps, Pool pool, SignalBus signalBus)
     {
       _pool = pool;
       _activeStairs = new Queue<StairsObject>(StartStairsCount);
@@ -72,7 +73,7 @@ namespace GameManagement
         _pool.Enqueue(obj);
       }
       
-      public Pool(Factory factory, IEnvironmentProps props)
+      public Pool(Factory factory, IGameplayProps props)
       {
         _pool = new Queue<StairsObject>(20);
 
