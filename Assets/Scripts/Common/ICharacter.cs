@@ -9,5 +9,7 @@ namespace Common
     Vector3 Position { get; set; }
 
     void OnSpawned();
+
+    void OnDespawned();
   }
 }

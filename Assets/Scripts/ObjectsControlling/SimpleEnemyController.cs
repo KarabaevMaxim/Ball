@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Common;
+using UnityEngine;
 
-namespace ObjectsModel.Controlling
+namespace ObjectsControlling
 {
   public class SimpleEnemyController : MonoBehaviour, IController
   {

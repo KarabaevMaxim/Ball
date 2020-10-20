@@ -1,6 +1,6 @@
 using System;
 
-namespace ObjectsModel.Jumpable
+namespace Common
 {
   public interface IJumpableObject
   {

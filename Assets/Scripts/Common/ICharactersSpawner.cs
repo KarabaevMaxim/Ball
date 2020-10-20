@@ -7,5 +7,7 @@ namespace Common
     ICharacter SpawnOnStart();
 
     ICharacter Spawn(Vector3 position);
+
+    void Despawn();
   }
 }

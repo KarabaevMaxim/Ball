@@ -16,10 +16,16 @@ namespace GameManagement
     private readonly Factory _factory;
     private readonly ICharacter _characterPrefab;
     private readonly IGameplayProps _gameplayProps;
-    private CinemachineVirtualCamera _virtualCamera;
+    private readonly CinemachineVirtualCamera _virtualCamera;
 
     #endregion
 
+    #region Поля
+
+    private ICharacter _character;
+
+    #endregion
+    
     public ICharacter Spawn(Vector3 position)
     {
       var obj = _factory.Create(_characterPrefab as Object);
@@ -27,12 +33,19 @@ namespace GameManagement
       obj.OnSpawned();
       _virtualCamera.Follow = obj.Transform;
       _virtualCamera.LookAt = obj.Transform;
+      _character = obj;
       return obj;
     }
 
     public ICharacter SpawnOnStart()
     {
       return Spawn(_gameplayProps.PlayerStartPosition);
+    }
+
+    public void Despawn()
+    {
+      _character.OnDespawned();
+      Object.Destroy(_character as Object);
     }
     
     public CharactersSpawner(Factory factory, ICharacter characterPrefab, IGameplayProps gameplayProps, CinemachineVirtualCamera virtualCamera)

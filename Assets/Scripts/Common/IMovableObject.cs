@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ObjectsModel.Movable
+namespace Common
 {
   public interface IMovableObject
   {
