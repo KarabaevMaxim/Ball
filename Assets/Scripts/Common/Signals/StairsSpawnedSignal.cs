@@ -7,10 +7,13 @@ namespace Common.Signals
   /// </summary>
   public readonly struct StairsSpawnedSignal
   {
+    public bool NeedSpawnObstacles { get; }
+    
     public IEnumerable<YZ> StairsCoords { get; }
     
-    public StairsSpawnedSignal(IEnumerable<YZ> stairsCoords)
+    public StairsSpawnedSignal(bool needSpawnObstacles, IEnumerable<YZ> stairsCoords)
     {
+      NeedSpawnObstacles = needSpawnObstacles;
       StairsCoords = stairsCoords;
     }
   }

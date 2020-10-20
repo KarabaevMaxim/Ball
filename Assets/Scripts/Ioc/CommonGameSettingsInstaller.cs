@@ -1,9 +1,10 @@
 ﻿using Common.Props;
 using GameManagement.Props;
+using Obstacles;
 using UnityEngine;
 using Zenject;
 
-namespace GameManagement.Installers
+namespace Ioc
 {
   /// <summary>
   /// Инсталлер настроек игрового режима.
@@ -14,9 +15,13 @@ namespace GameManagement.Installers
     [SerializeField]
     private GameplayProps _gameplayProps = default;
 
+    [SerializeField]
+    private ObstaclesProps _obstaclesProps = default;
+    
     public override void InstallBindings()
     {
       Container.Bind<IGameplayProps>().FromInstance(_gameplayProps).IfNotBound();
+      Container.Bind<ObstaclesProps>().FromInstance(_obstaclesProps).IfNotBound();
     }
   }
 }

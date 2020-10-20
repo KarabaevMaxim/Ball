@@ -1,0 +1,19 @@
+{
+    "name": "Ioc",
+    "references": [
+        "GUID:f50966adf0de54585b391a83683fd7f1",
+        "GUID:3c6df8bb31a8d4736b4b33ecfa0884be",
+        "GUID:5c58f5d2d6bdd43bc9df979f744a7716",
+        "GUID:a0caaa6bdbe414bc38818c1d09586cce",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

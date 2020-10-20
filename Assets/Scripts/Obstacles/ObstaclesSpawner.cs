@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Common;
 using Common.Props;
 using Common.Signals;
@@ -16,18 +15,15 @@ namespace Obstacles
   {
     #region Константы
 
-    private const int PoolCapacityForEachPrefab = 5;
+    private const int PoolCapacityForEachPrefab = 20;
 
     #endregion
 
     #region Зависимости
 
     private readonly Pool _pool;
-
     private readonly SignalBus _signalBus;
-
     private readonly IGameplayProps _gameplayProps;
-
     private readonly IGameManager _gameManager;
 
     #endregion
@@ -37,6 +33,11 @@ namespace Obstacles
     public void SpawnRandom(Vector3 position)
     {
       var obj = _pool.Spawn();
+      
+      if (obj == null)
+        return;
+
+      obj.Position = position;
       obj.OnSpawned();
     }
 
@@ -66,8 +67,8 @@ namespace Obstacles
 
         if (needSpawn)
         {
-          var x = Random.Range(_gameplayProps.MinLine, _gameplayProps.MaxLine + 1);
-          SpawnRandom(new Vector3(x, coord.Y, coord.Z));
+          var x = Random.Range(_gameplayProps.MinLine, _gameplayProps.MaxLine);
+          SpawnRandom(new Vector3(x, coord.Y + 1, coord.Z));
         }
       }
     }
@@ -100,8 +101,8 @@ namespace Obstacles
       
       public IObstacle Spawn()
       {
-        var obj = RandomSpawn(new List<int>(_ids.Count));
-        (obj as MonoBehaviour).gameObject.SetActive(true);
+        var obj = RandomSpawn(new List<int>(_ids.Count), 0);
+        (obj as MonoBehaviour)?.gameObject.SetActive(true);
         return obj;
       }
 
@@ -111,20 +112,28 @@ namespace Obstacles
         _pool[obj.PrefabId].Enqueue(obj);
       } 
       
-      private IObstacle RandomSpawn(ICollection<int> prevIds)
+      private IObstacle RandomSpawn(ICollection<int> prevIds, int callsCount)
       {
+        if (callsCount > 10)
+          return null;
+          
+        callsCount++;
         var id = -1;
 
         do
         {
           var index = Random.Range(0, _ids.Count);
           id = _ids[index];
+
+          if (prevIds.Count == _ids.Count)
+            return null;
+
         } while (prevIds.Contains(id));
         
         prevIds.Add(id);
         
         if (_pool[id].Count == 0)
-          return RandomSpawn(prevIds);
+          return RandomSpawn(prevIds, callsCount);
 
         return _pool[id].Dequeue();
       }

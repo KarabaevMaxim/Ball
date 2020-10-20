@@ -7,6 +7,12 @@ namespace Obstacles
   {
     public int PrefabId { get; set; }
 
+    public Vector3 Position
+    {
+      get => transform.position;
+      set => transform.position = value;
+    }
+
     public void OnSpawned()
     {
       

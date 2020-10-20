@@ -46,15 +46,16 @@ namespace GameManagement
     {
       var obj = _pool.Spawn();
  
-      if (_lastStairs == null)
-        obj.transform.position = new Vector3(0, 0, 0);
-      else
-        obj.transform.position = new Vector3(0, _lastStairs.transform.position.y + _lastStairs.Height, _lastStairs.transform.position.z + _lastStairs.Length);
+      obj.transform.position = _lastStairs == null 
+        ? new Vector3(0, 0, 0) 
+        : new Vector3(0, _lastStairs.transform.position.y + _lastStairs.Height, _lastStairs.transform.position.z + _lastStairs.Length);
       
-      _lastStairs = obj;
       _activeStairs.Enqueue(obj);
-      var lastPos = _lastStairs.transform.position;
-      _signalBus.Fire(new StairsSpawnedSignal(_lastStairs.StairsCoords.Select(sc => new YZ(sc.Y + lastPos.y, sc.Z + lastPos.z))));
+      var lastPos = obj.transform.position;
+      _signalBus.Fire(new StairsSpawnedSignal(
+        _lastStairs != null,
+        obj.StairsCoords.Select(sc => new YZ(sc.Y + lastPos.y, sc.Z + lastPos.z))));
+      _lastStairs = obj;
     }
 
     public void DespawnFirst()
