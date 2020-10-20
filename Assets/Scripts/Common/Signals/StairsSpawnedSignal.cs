@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Common.Signals
 {
   /// <summary>
@@ -9,12 +7,12 @@ namespace Common.Signals
   {
     public bool NeedSpawnObstacles { get; }
     
-    public IEnumerable<YZ> StairsCoords { get; }
+    public IStairsObject Stairs { get; }
     
-    public StairsSpawnedSignal(bool needSpawnObstacles, IEnumerable<YZ> stairsCoords)
+    public StairsSpawnedSignal(bool needSpawnObstacles, IStairsObject stairs)
     {
       NeedSpawnObstacles = needSpawnObstacles;
-      StairsCoords = stairsCoords;
+      Stairs = stairs;
     }
   }
 }

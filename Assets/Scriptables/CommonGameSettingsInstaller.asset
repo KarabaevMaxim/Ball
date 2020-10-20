@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameplayProps:
     _minLine: 0
-    _maxLine: 0
+    _maxLine: 3
     _stairsPrefabs:
     - {fileID: -2172449395104844272, guid: ac0897d3c314540d7845bfc2aaefc7b0, type: 3}
     _startDifficulty: 5

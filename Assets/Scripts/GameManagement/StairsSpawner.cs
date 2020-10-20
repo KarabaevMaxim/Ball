@@ -51,16 +51,15 @@ namespace GameManagement
         : new Vector3(0, _lastStairs.transform.position.y + _lastStairs.Height, _lastStairs.transform.position.z + _lastStairs.Length);
       
       _activeStairs.Enqueue(obj);
-      var lastPos = obj.transform.position;
-      _signalBus.Fire(new StairsSpawnedSignal(
-        _lastStairs != null,
-        obj.StairsCoords.Select(sc => new YZ(sc.Y + lastPos.y, sc.Z + lastPos.z))));
+      _signalBus.Fire(new StairsSpawnedSignal(_lastStairs != null, obj));
       _lastStairs = obj;
     }
 
     public void DespawnFirst()
     {
-      _pool.Despawn(_activeStairs.Dequeue());
+      var stairs = _activeStairs.Dequeue();
+      _pool.Despawn(stairs);
+      stairs.OnDespawned();
     }
 
     #endregion

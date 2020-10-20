@@ -21,29 +21,31 @@ namespace Obstacles
 
     #region Зависимости
 
-    private readonly Pool _pool;
-    private readonly SignalBus _signalBus;
-    private readonly IGameplayProps _gameplayProps;
-    private readonly IGameManager _gameManager;
+    private Pool _pool;
+    private SignalBus _signalBus;
+    private IGameplayProps _gameplayProps;
+    private IGameManager _gameManager;
 
     #endregion
 
     #region IObstaclesSpawner
 
-    public void SpawnRandom(Vector3 position)
+    public IObstacle SpawnRandom(Vector3 position)
     {
       var obj = _pool.Spawn();
       
       if (obj == null)
-        return;
+        return null;
 
       obj.Position = position;
       obj.OnSpawned();
+      return obj;
     }
 
     public void Despawn(IObstacle obj)
     {
       _pool.Despawn(obj);
+      obj.OnDespawned();
     }
 
     #endregion
@@ -61,14 +63,17 @@ namespace Obstacles
 
     private void OnStairsSpawned(StairsSpawnedSignal signal)
     {
-      foreach (var coord in signal.StairsCoords)
+      foreach (var localCoord in signal.Stairs.StairsCoords)
       {
         var needSpawn = MathHelper.GetRandomWithProbability(_gameManager.CurrentDifficulty * 10);
 
         if (needSpawn)
         {
-          var x = Random.Range(_gameplayProps.MinLine, _gameplayProps.MaxLine);
-          SpawnRandom(new Vector3(x, coord.Y + 1, coord.Z));
+          var x = Random.Range(_gameplayProps.MinLine, _gameplayProps.MaxLine + 1);
+          var obstacle = SpawnRandom(new Vector3(x, localCoord.Y + 1 + signal.Stairs.Position.y, localCoord.Z + signal.Stairs.Position.z));
+          
+          if (obstacle != null)
+            signal.Stairs.AddObstacle(obstacle);
         }
       }
     }
@@ -77,7 +82,8 @@ namespace Obstacles
 
     #region Конструкторы
 
-    public ObstaclesSpawner(Pool pool, SignalBus signalBus, IGameplayProps gameplayProps, IGameManager gameManager)
+    [Inject]
+    private void Initialize(Pool pool, SignalBus signalBus, IGameplayProps gameplayProps, IGameManager gameManager)
     {
       _pool = pool;
       _signalBus = signalBus;

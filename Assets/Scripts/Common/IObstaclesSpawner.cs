@@ -4,7 +4,7 @@ namespace Common
 {
   public interface IObstaclesSpawner
   {
-    void SpawnRandom(Vector3 position);
+    IObstacle SpawnRandom(Vector3 position);
 
     void Despawn(IObstacle obj);
   }
