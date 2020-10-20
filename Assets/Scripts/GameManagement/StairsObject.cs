@@ -5,6 +5,9 @@ using Zenject;
 
 namespace GameManagement
 {
+  /// <summary>
+  /// Компонент сегмента лестницы.
+  /// </summary>
   public class StairsObject : MonoBehaviour, IStairsObject
   {
     #region Поля настройки
@@ -69,7 +72,5 @@ namespace GameManagement
     }
 
     #endregion
-
-
   }
 }

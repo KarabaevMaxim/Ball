@@ -11,6 +11,9 @@ using Random = UnityEngine.Random;
 
 namespace Obstacles
 {
+  /// <summary>
+  /// Фабрика препятствий.
+  /// </summary>
   public class ObstaclesSpawner : IObstaclesSpawner, IDisposable
   {
     #region Константы
@@ -80,7 +83,7 @@ namespace Obstacles
 
     #endregion
 
-    #region Конструкторы
+    #region Остальные методы
 
     [Inject]
     private void Initialize(Pool pool, SignalBus signalBus, IGameplayProps gameplayProps, IGameManager gameManager)
