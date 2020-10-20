@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Common;
 using Common.Props;
 using UnityEngine;
@@ -25,6 +24,9 @@ namespace GameManagement.Props
     [SerializeField, Range(0, 10)]
     private int _startDifficulty;
 
+    [SerializeField]
+    private  Vector3 _playerStartPosition;
+
     public int MinLine => _minLine;
 
     public int MaxLine => _maxLine;
@@ -33,12 +35,15 @@ namespace GameManagement.Props
 
     public int StartDifficulty => _startDifficulty;
 
-    public GameplayProps(int minLine, int maxLine, List<StairsObject> stairsPrefabs, int startDifficulty)
+    public Vector3 PlayerStartPosition => _playerStartPosition;
+
+    public GameplayProps(int minLine, int maxLine, List<StairsObject> stairsPrefabs, int startDifficulty, Vector3 playerStartPosition)
     {
       _minLine = minLine;
       _maxLine = maxLine;
       _stairsPrefabs = stairsPrefabs;
       _startDifficulty = startDifficulty;
+      _playerStartPosition = playerStartPosition;
     }
   }
 }

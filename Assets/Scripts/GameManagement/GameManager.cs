@@ -13,9 +13,9 @@ namespace GameManagement
     #region Зависимости
 
     private IStairsSpawner _stairsSpawner;
-
     private IGameplayProps _gameplayProps;
-
+    private ICharactersSpawner _charactersSpawner;
+    
     #endregion
 
     #region Поля
@@ -36,6 +36,7 @@ namespace GameManagement
     {
       _currentDifficulty = _gameplayProps.StartDifficulty;
       _stairsSpawner.SpawnOnStart();
+      _charactersSpawner.SpawnOnStart();
     }
 
     #endregion
@@ -43,10 +44,11 @@ namespace GameManagement
     #region Остальные методы
 
     [Inject]
-    private void Initialize(IStairsSpawner stairsSpawner, IGameplayProps gameplayProps)
+    private void Initialize(IStairsSpawner stairsSpawner, IGameplayProps gameplayProps, ICharactersSpawner charactersSpawner)
     {
       _stairsSpawner = stairsSpawner;
       _gameplayProps = gameplayProps;
+      _charactersSpawner = charactersSpawner;
     }
 
     #endregion

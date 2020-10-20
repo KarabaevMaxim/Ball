@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Common.Props
 {
@@ -11,5 +12,7 @@ namespace Common.Props
     IEnumerable<IStairsObject> StairsPrefabs { get; }
     
     int StartDifficulty { get; }
+    
+    Vector3 PlayerStartPosition { get; }
   }
 }
