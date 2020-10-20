@@ -1,4 +1,5 @@
 using Common;
+using Common.ObjectsModel;
 using Common.Props;
 using UnityEngine;
 using Zenject;

@@ -1,4 +1,5 @@
 using Common;
+using Common.ObjectsModel;
 using UnityEngine;
 
 namespace ObjectsModel.Movable

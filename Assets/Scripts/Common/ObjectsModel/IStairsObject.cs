@@ -1,7 +1,6 @@
-using Common.Signals;
 using UnityEngine;
 
-namespace Common
+namespace Common.ObjectsModel
 {
   public interface IStairsObject
   {

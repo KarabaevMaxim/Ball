@@ -1,4 +1,4 @@
-namespace Common
+namespace Common.Spawners
 {
   public interface IStairsSpawner
   {

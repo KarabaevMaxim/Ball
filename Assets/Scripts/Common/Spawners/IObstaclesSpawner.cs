@@ -1,6 +1,7 @@
+using Common.ObjectsModel;
 using UnityEngine;
 
-namespace Common
+namespace Common.Spawners
 {
   public interface IObstaclesSpawner
   {

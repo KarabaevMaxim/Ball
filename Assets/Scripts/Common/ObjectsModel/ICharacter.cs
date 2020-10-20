@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common
+namespace Common.ObjectsModel
 {
   public interface ICharacter
   {

@@ -1,4 +1,4 @@
-﻿namespace Common
+﻿namespace Common.ObjectsModel
 {
   public interface IController
   {

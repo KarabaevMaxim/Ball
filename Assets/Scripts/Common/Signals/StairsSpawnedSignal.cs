@@ -1,3 +1,5 @@
+using Common.ObjectsModel;
+
 namespace Common.Signals
 {
   /// <summary>
