@@ -19,6 +19,7 @@ MonoBehaviour:
     - {fileID: -2172449395104844272, guid: ac0897d3c314540d7845bfc2aaefc7b0, type: 3}
     _startDifficulty: 5
     _playerStartPosition: {x: 2, y: 6, z: 5}
+    _pseudoGravity: 4
   _obstaclesProps:
     _obstaclesPrefabs:
     - {fileID: 2924962529792974288, guid: baae95717fb954e8082a144de1e13e32, type: 3}

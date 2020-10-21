@@ -15,5 +15,7 @@ namespace Common.Props
     int StartDifficulty { get; }
     
     Vector3 PlayerStartPosition { get; }
+    
+    float PseudoGravity { get; }
   }
 }

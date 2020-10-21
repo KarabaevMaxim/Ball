@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Common;
 using Common.ObjectsModel;
 using Common.Props;
 using UnityEngine;
@@ -13,6 +12,8 @@ namespace GameManagement.Props
   [Serializable]
   public struct GameplayProps : IGameplayProps
   {
+    #region Поля настроек
+
     [SerializeField]
     private int _minLine;
     
@@ -26,7 +27,14 @@ namespace GameManagement.Props
     private int _startDifficulty;
 
     [SerializeField]
-    private  Vector3 _playerStartPosition;
+    private Vector3 _playerStartPosition;
+
+    [SerializeField]
+    private float _pseudoGravity;
+
+    #endregion
+
+    #region Свойства
 
     public int MinLine => _minLine;
 
@@ -38,13 +46,22 @@ namespace GameManagement.Props
 
     public Vector3 PlayerStartPosition => _playerStartPosition;
 
-    public GameplayProps(int minLine, int maxLine, List<StairsObject> stairsPrefabs, int startDifficulty, Vector3 playerStartPosition)
+    public float PseudoGravity => _pseudoGravity;
+
+    #endregion
+
+    #region Конструкторы
+
+    public GameplayProps(int minLine, int maxLine, List<StairsObject> stairsPrefabs, int startDifficulty, Vector3 playerStartPosition, float pseudoGravity)
     {
       _minLine = minLine;
       _maxLine = maxLine;
       _stairsPrefabs = stairsPrefabs;
       _startDifficulty = startDifficulty;
       _playerStartPosition = playerStartPosition;
+      _pseudoGravity = pseudoGravity;
     }
+
+    #endregion
   }
 }
