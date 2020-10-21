@@ -1,6 +1,8 @@
 using System;
+using Application.Storage;
 using Cinemachine;
 using Common;
+using Common.Application;
 using Common.ObjectsModel;
 using Common.Signals;
 using Common.Spawners;
@@ -23,6 +25,14 @@ namespace Ioc
 
     public override void InstallBindings()
     {
+      RegisterGameServicesAndSignals();
+      // чтобы не тратить время на разделение контекстов, зарегистрирую все в одной куче
+      RegisterApplicationServicesAndSignals();
+      UnityEngine.Application.targetFrameRate = 30;
+    }
+
+    private void RegisterGameServicesAndSignals()
+    {
       Container.Bind<IStairsSpawner>().To<StairsSpawner>().AsSingle();
       Container.BindFactory<Object, StairsObject, StairsSpawner.Factory>().FromFactory<PrefabFactory<StairsObject>>();
       Container.Bind<StairsSpawner.Pool>().AsSingle();
@@ -40,10 +50,13 @@ namespace Ioc
       Container.DeclareSignal<StairsSpawnedSignal>();
       Container.DeclareSignal<StairPassedSignal>();
       Container.DeclareSignal<ProgressChangedSignal>();
-
-      Application.targetFrameRate = 30;
     }
 
+    private void RegisterApplicationServicesAndSignals()
+    {
+      Container.Bind<IStorage<User>>().To<JsonStorage<User>>().AsSingle();
+    }
+    
     private void OnValidate()
     {
       if (_gameManager == null)
