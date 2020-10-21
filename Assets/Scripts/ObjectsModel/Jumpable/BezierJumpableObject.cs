@@ -16,11 +16,11 @@ namespace ObjectsModel.Jumpable
       }
     }
     
-    public override void StartJump(float targetY, float targetZ, TimeSpan time)
+    public override void StartJump(float targetY, float targetZ, TimeSpan time, Action callback)
     {
       if (!IsJumping)
       {
-        StartCoroutine(Jumping(targetY, targetZ, time));
+        StartCoroutine(Jumping(targetY, targetZ, time, callback));
         IsJumping = true;
       }
     }
@@ -43,7 +43,7 @@ namespace ObjectsModel.Jumpable
       IsJumping = false;
     }
     
-    private IEnumerator Jumping(float targetY, float targetZ, TimeSpan jumpTime)
+    private IEnumerator Jumping(float targetY, float targetZ, TimeSpan jumpTime, Action callback)
     {
       var step = 0.0f;
       var startPosition = transform.position;
@@ -61,6 +61,7 @@ namespace ObjectsModel.Jumpable
 
       transform.position = new Vector3(transform.position.x, targetY, targetZ);
       IsJumping = false;
+      callback?.Invoke();
     }
   }
 }

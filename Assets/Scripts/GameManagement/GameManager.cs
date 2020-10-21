@@ -1,5 +1,6 @@
 using Common;
 using Common.Props;
+using Common.Signals;
 using Common.Spawners;
 using UnityEngine;
 using Zenject;
@@ -16,13 +17,14 @@ namespace GameManagement
     private IStairsSpawner _stairsSpawner;
     private IGameplayProps _gameplayProps;
     private ICharactersSpawner _charactersSpawner;
+    private SignalBus _signalBus;
     
     #endregion
 
     #region Поля
 
     private int _currentDifficulty;
-
+    
     #endregion
 
     #region Свойства
@@ -38,6 +40,7 @@ namespace GameManagement
       _currentDifficulty = _gameplayProps.StartDifficulty;
       _stairsSpawner.SpawnOnStart();
       _charactersSpawner.SpawnOnStart();
+      _signalBus.Fire(new ProgressChangedSignal(0));
     }
 
     #endregion
@@ -45,11 +48,12 @@ namespace GameManagement
     #region Остальные методы
 
     [Inject]
-    private void Initialize(IStairsSpawner stairsSpawner, IGameplayProps gameplayProps, ICharactersSpawner charactersSpawner)
+    private void Initialize(IStairsSpawner stairsSpawner, IGameplayProps gameplayProps, ICharactersSpawner charactersSpawner, SignalBus signalBus)
     {
       _stairsSpawner = stairsSpawner;
       _gameplayProps = gameplayProps;
       _charactersSpawner = charactersSpawner;
+      _signalBus = signalBus;
     }
 
     #endregion

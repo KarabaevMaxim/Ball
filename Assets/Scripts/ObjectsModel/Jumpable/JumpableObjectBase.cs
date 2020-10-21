@@ -16,6 +16,6 @@ namespace ObjectsModel.Jumpable
 
     public abstract void StartJump(float targetY, TimeSpan time);
 
-    public abstract void StartJump(float targetY, float targetZ, TimeSpan time);
+    public abstract void StartJump(float targetY, float targetZ, TimeSpan time, Action callback);
   }
 }

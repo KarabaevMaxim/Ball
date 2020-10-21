@@ -34,9 +34,12 @@ namespace Ioc
       Container.BindFactory<Object, ICharacter, CharactersSpawner.Factory>().FromFactory<PrefabFactory<ICharacter>>();
       Container.Bind<ICharactersSpawner>().To<CharactersSpawner>().AsSingle();
       Container.Bind<CinemachineVirtualCamera>().FromComponentInHierarchy().AsSingle();
+      Container.Bind<ProgressService>().AsSingle().NonLazy();
       
       SignalBusInstaller.Install(Container);
       Container.DeclareSignal<StairsSpawnedSignal>();
+      Container.DeclareSignal<StairPassedSignal>();
+      Container.DeclareSignal<ProgressChangedSignal>();
 
       Application.targetFrameRate = 30;
     }

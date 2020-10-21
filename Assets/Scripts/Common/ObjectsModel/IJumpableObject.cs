@@ -8,6 +8,6 @@ namespace Common.ObjectsModel
     
     void StartJump(float targetY, TimeSpan time);
 
-    void StartJump(float targetY, float targetZ, TimeSpan time);
+    void StartJump(float targetY, float targetZ, TimeSpan time, Action callback);
   }
 }

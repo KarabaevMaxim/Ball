@@ -2,6 +2,7 @@
 using Common;
 using Common.ObjectsModel;
 using Common.Props;
+using Common.Signals;
 using ObjectsControlling.PlayerInput;
 using UnityEngine;
 using Zenject;
@@ -19,6 +20,7 @@ namespace ObjectsControlling
     private IJumpableObject _jumpableObject;
     private IGameplayProps _gameplayProps;
     private IInput _input;
+    private SignalBus _signalBus;
 
     #endregion
 
@@ -41,20 +43,7 @@ namespace ObjectsControlling
     }
 
     #endregion
-
-    #region Остальные методы
-
-    [Inject]
-    private void Initialize(IMovableObject movableObject, IJumpableObject jumpableObject, IGameplayProps gameplayProps, IInput input)
-    {
-      _movableObject = movableObject;
-      _jumpableObject = jumpableObject;
-      _gameplayProps = gameplayProps;
-      _input = input;
-    }
-
-    #endregion
-
+    
     #region Обработчики событий
 
     private void OnMoveLeft()
@@ -74,7 +63,21 @@ namespace ObjectsControlling
     private void OnJumpForward()
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
-        _jumpableObject.StartJump(transform.position.y + 1, transform.position.z + 1, TimeSpan.FromSeconds(1));
+        _jumpableObject.StartJump(transform.position.y + 1, transform.position.z + 1, TimeSpan.FromSeconds(1), () => _signalBus.Fire<StairPassedSignal>());
+    }
+
+    #endregion
+
+    #region Остальные методы
+
+    [Inject]
+    private void Initialize(IMovableObject movableObject, IJumpableObject jumpableObject, IGameplayProps gameplayProps, IInput input, SignalBus signalBus)
+    {
+      _movableObject = movableObject;
+      _jumpableObject = jumpableObject;
+      _gameplayProps = gameplayProps;
+      _input = input;
+      _signalBus = signalBus;
     }
 
     #endregion
