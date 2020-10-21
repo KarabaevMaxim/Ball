@@ -1,5 +1,4 @@
-﻿using System;
-using Common.Signals;
+﻿using Common.Game.Signals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
