@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using Common;
 using Common.Props;
 using Common.Signals;
 using Common.Spawners;
@@ -17,7 +15,7 @@ namespace GameManagement
     #region Константы
 
     private const int PoolCapacityForeachPrefab = 20;
-    private const int StartStairsCount = 10;
+    private const int StartStairsCount = 5;
 
     #endregion
 

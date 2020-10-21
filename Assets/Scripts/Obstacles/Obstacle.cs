@@ -24,12 +24,12 @@ namespace Obstacles
 
     public void OnSpawned()
     {
-      
+      _controller.StartBehaviour();
     }
 
     public void OnDespawned()
     {
-      
+      _controller.StopBehaviour();
     }
 
     #endregion

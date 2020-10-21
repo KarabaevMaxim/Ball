@@ -54,22 +54,34 @@ namespace ObjectsModel.Movable
     {
       while (MathHelper.GetDistanceByHorizontalPlane(transform.position, targetPos) >= MathHelper.FloatOperationsError)
       {
+        var currentPosition = transform.position;
         var delta = MoveSpeed * Time.deltaTime;
 
         var newPosition = Vector3.MoveTowards(
-          transform.position,
-          new Vector3(targetPos.x, transform.position.y, targetPos.z),
+          currentPosition,
+          new Vector3(targetPos.x, currentPosition.y, targetPos.z),
           delta);
 
-        if (Physics.RaycastNonAlloc(transform.position, Vector3.down, _buffer, MathHelper.FloatOperationsError, _layerMask) == 0)
+        var rcOrigin = new Vector3(currentPosition.x + .5f, currentPosition.y, currentPosition.z + .5f);
+        if (Physics.RaycastNonAlloc(rcOrigin, Vector3.down, _buffer, .2f, _layerMask) == 0)
         {
           var dropDelta = _gameplayProps.PseudoGravity * Time.deltaTime;
-          newPosition.y = transform.position.y - dropDelta;
+          newPosition.y = currentPosition.y - dropDelta;
         }
         else
         {
-          newPosition.y = Mathf.Round(transform.position.y);
+          newPosition.y = Mathf.Round(currentPosition.y);
         }
+        
+        // if (Physics.Raycast(new Vector3(currentPosition.x + .5f, currentPosition.y, currentPosition.z + .5f), Vector3.down, .3f))
+        // {
+        //   newPosition.y = Mathf.Round(currentPosition.y);
+        // }
+        // else
+        // {
+        //   var dropDelta = _gameplayProps.PseudoGravity * Time.deltaTime;
+        //   newPosition.y = currentPosition.y - dropDelta;
+        // }
 
         transform.position = newPosition;
         

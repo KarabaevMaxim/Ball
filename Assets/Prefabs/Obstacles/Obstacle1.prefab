@@ -48,11 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _components: []
+  _components:
+  - {fileID: 5914259881661706133}
+  - {fileID: 4872629652825151677}
+  - {fileID: 8340769013985485578}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 0}
-  _bindType: 0
+  _bindType: 2
 --- !u!114 &8041017808054410375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c298d30ba6a424d88a642063a01021c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 3
+  _moveSpeed: 1
 --- !u!1 &9102693597733010471
 GameObject:
   m_ObjectHideFlags: 0

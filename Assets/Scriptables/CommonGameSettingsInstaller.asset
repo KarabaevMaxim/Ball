@@ -22,4 +22,4 @@ MonoBehaviour:
     _pseudoGravity: 4
   _obstaclesProps:
     _obstaclesPrefabs:
-    - {fileID: 2924962529792974288, guid: baae95717fb954e8082a144de1e13e32, type: 3}
+    - {fileID: 4872629652825151677, guid: baae95717fb954e8082a144de1e13e32, type: 3}

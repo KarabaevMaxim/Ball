@@ -37,6 +37,8 @@ namespace Ioc
       
       SignalBusInstaller.Install(Container);
       Container.DeclareSignal<StairsSpawnedSignal>();
+
+      Application.targetFrameRate = 30;
     }
 
     private void OnValidate()

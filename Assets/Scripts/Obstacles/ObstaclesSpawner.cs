@@ -20,7 +20,7 @@ namespace Obstacles
   {
     #region Константы
 
-    private const int PoolCapacityForEachPrefab = 20;
+    private const int PoolCapacityForEachPrefab = 30;
 
     #endregion
 

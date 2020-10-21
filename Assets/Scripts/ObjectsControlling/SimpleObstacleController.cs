@@ -17,8 +17,7 @@ namespace ObjectsControlling
     #endregion
 
     #region Поля
-
-    private Coroutine _behaviourCoroutine;
+    
     private bool _started;
 
     #endregion
@@ -29,33 +28,23 @@ namespace ObjectsControlling
     {
       if (!_started)
       {
-        _behaviourCoroutine = StartCoroutine(Behaviour());
+        _movableObject.StartMove(new Vector3(transform.position.x, 0, 0));
         _started = true;
       }
     }
 
     public void StopBehaviour()
     {
-      if (_behaviourCoroutine != null)
+      if (_started)
       {
-        StopCoroutine(_behaviourCoroutine);
-        _behaviourCoroutine = null;
+        _movableObject.StopMove();
+        _started = false;
       }
-
-      _started = false;
     }
 
     #endregion
 
     #region Остальные методы
-
-    private IEnumerator Behaviour()
-    {
-      while (true)
-      {
-        yield return null;
-      }
-    }
 
     [Inject]
     private void Initialize(IMovableObject movableObject)
