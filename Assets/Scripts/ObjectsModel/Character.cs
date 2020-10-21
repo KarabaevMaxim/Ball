@@ -1,7 +1,9 @@
+using System;
 using Common;
 using Common.ObjectsModel;
 using Common.Props;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace ObjectsModel
@@ -39,9 +41,13 @@ namespace ObjectsModel
 
     #endregion
 
-    #region Обработчики событий
+    #region Методы Unity
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+      if (other.CompareTag("Obstacle"))
+        SceneManager.LoadScene(0);
+    }
 
     #endregion
     

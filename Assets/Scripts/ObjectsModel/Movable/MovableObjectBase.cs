@@ -1,4 +1,4 @@
-using Common;
+using System;
 using Common.ObjectsModel;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace ObjectsModel.Movable
 
     public bool IsMoving { get; protected set; }
 
-    public abstract void StartMove(Vector3 targetPos);
+    public abstract void StartMove(Vector3 targetPos, Action callback);
 
     public abstract void StopMove();
   }

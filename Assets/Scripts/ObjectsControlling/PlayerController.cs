@@ -61,14 +61,14 @@ namespace ObjectsControlling
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
         if (_gameplayProps.MinLine < transform.position.x)
-          _movableObject.StartMove(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z));
+          _movableObject.StartMove(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z), null);
     }
     
     private void OnMoveRight()
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
         if (_gameplayProps.MaxLine > transform.position.x)
-          _movableObject.StartMove(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
+          _movableObject.StartMove(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), null);
     }
     
     private void OnJumpForward()

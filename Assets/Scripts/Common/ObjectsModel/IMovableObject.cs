@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Common.ObjectsModel
 {
@@ -6,7 +7,7 @@ namespace Common.ObjectsModel
   {
     bool IsMoving { get; }
     
-    void StartMove(Vector3 targetPos);
+    void StartMove(Vector3 targetPos, Action callback);
 
     void StopMove();
   }

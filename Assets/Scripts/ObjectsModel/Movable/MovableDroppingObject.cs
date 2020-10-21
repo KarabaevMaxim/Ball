@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Common.Props;
 using Infrastructure;
@@ -32,9 +33,9 @@ namespace ObjectsModel.Movable
     /// </summary>
     /// <remarks>Перемещение по координате Y будет происходить за счет псевдофизики.</remarks>
     /// <param name="targetPos">Конечная позиция. Компонента Y игнорируется.</param>
-    public override void StartMove(Vector3 targetPos)
+    public override void StartMove(Vector3 targetPos, Action callback)
     {
-      _moveCoroutine = StartCoroutine(Move(targetPos));
+      _moveCoroutine = StartCoroutine(Move(targetPos, callback));
     }
 
     public override void StopMove()
@@ -48,9 +49,19 @@ namespace ObjectsModel.Movable
 
     #endregion
     
+    #region Методы Unity
+
+    private void OnTriggerEnter(Collider other)
+    {
+      if (other.CompareTag("Stair"))
+        transform.position = new Vector3(transform.position.x, Mathf.Round(transform.position.y), transform.position.z);
+    }
+
+    #endregion
+    
     #region Остальные методы
 
-    private IEnumerator Move(Vector3 targetPos)
+    private IEnumerator Move(Vector3 targetPos, Action callback)
     {
       while (MathHelper.GetDistanceByHorizontalPlane(transform.position, targetPos) >= MathHelper.FloatOperationsError)
       {
@@ -63,6 +74,7 @@ namespace ObjectsModel.Movable
           delta);
 
         var rcOrigin = new Vector3(currentPosition.x + .5f, currentPosition.y, currentPosition.z + .5f);
+        
         if (Physics.RaycastNonAlloc(rcOrigin, Vector3.down, _buffer, .2f, _layerMask) == 0)
         {
           var dropDelta = _gameplayProps.PseudoGravity * Time.deltaTime;
@@ -72,16 +84,6 @@ namespace ObjectsModel.Movable
         {
           newPosition.y = Mathf.Round(currentPosition.y);
         }
-        
-        // if (Physics.Raycast(new Vector3(currentPosition.x + .5f, currentPosition.y, currentPosition.z + .5f), Vector3.down, .3f))
-        // {
-        //   newPosition.y = Mathf.Round(currentPosition.y);
-        // }
-        // else
-        // {
-        //   var dropDelta = _gameplayProps.PseudoGravity * Time.deltaTime;
-        //   newPosition.y = currentPosition.y - dropDelta;
-        // }
 
         transform.position = newPosition;
         
@@ -89,6 +91,7 @@ namespace ObjectsModel.Movable
       }
       
       transform.position = new Vector3(targetPos.x, transform.position.y, targetPos.z);
+      callback?.Invoke();
     }
 
     [Inject]

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Common.ObjectsModel;
+using Common.Spawners;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +15,9 @@ namespace ObjectsControlling
     #region Зависимости
 
     private IMovableObject _movableObject;
-
+    private IObstaclesSpawner _obstaclesSpawner;
+    private IObstacle _obstacle;
+    
     #endregion
 
     #region Поля
@@ -28,7 +32,7 @@ namespace ObjectsControlling
     {
       if (!_started)
       {
-        _movableObject.StartMove(new Vector3(transform.position.x, 0, 0));
+        _movableObject.StartMove(new Vector3(transform.position.x, 0, 0), () => _obstaclesSpawner.Despawn(_obstacle));
         _started = true;
       }
     }
@@ -47,9 +51,11 @@ namespace ObjectsControlling
     #region Остальные методы
 
     [Inject]
-    private void Initialize(IMovableObject movableObject)
+    private void Initialize(IMovableObject movableObject, IObstaclesSpawner obstaclesSpawner, IObstacle obstacle)
     {
       _movableObject = movableObject;
+      _obstaclesSpawner = obstaclesSpawner;
+      _obstacle = obstacle;
     }
 
     #endregion

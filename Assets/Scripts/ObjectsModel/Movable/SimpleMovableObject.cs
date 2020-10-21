@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,11 +8,11 @@ namespace ObjectsModel.Movable
   {
     private Coroutine _moveCoroutine;
 
-    public override void StartMove(Vector3 targetPos)
+    public override void StartMove(Vector3 targetPos, Action callback)
     {
       if (!IsMoving)
       {
-        _moveCoroutine = StartCoroutine(Moving(targetPos));
+        _moveCoroutine = StartCoroutine(Moving(targetPos, callback));
         IsMoving = true;
       }
     }
@@ -24,7 +25,7 @@ namespace ObjectsModel.Movable
       IsMoving = false;
     }
 
-    private IEnumerator Moving(Vector3 targetPos)
+    private IEnumerator Moving(Vector3 targetPos, Action callback)
     {
       var startPos = transform.position;
       var range = Vector3.Distance(startPos, targetPos);
@@ -41,6 +42,7 @@ namespace ObjectsModel.Movable
       transform.position = targetPos;
       _moveCoroutine = null;
       IsMoving = false;
+      callback?.Invoke();
     }
   }
 }
