@@ -10,12 +10,21 @@ namespace ObjectsControlling
   /// </summary>
   public class SimpleObstacleController : MonoBehaviour, IController
   {
+    #region Зависимости
+
     private IMovableObject _movableObject;
-    private IDroppingObject _droppingObject;
+
+    #endregion
+
+    #region Поля
 
     private Coroutine _behaviourCoroutine;
     private bool _started;
-    
+
+    #endregion
+
+    #region IController
+
     public void StartBehaviour()
     {
       if (!_started)
@@ -36,6 +45,10 @@ namespace ObjectsControlling
       _started = false;
     }
 
+    #endregion
+
+    #region Остальные методы
+
     private IEnumerator Behaviour()
     {
       while (true)
@@ -45,10 +58,11 @@ namespace ObjectsControlling
     }
 
     [Inject]
-    private void Initialize(IMovableObject movableObject, IDroppingObject droppingObject)
+    private void Initialize(IMovableObject movableObject)
     {
       _movableObject = movableObject;
-      _droppingObject = droppingObject;
     }
+
+    #endregion
   }
 }

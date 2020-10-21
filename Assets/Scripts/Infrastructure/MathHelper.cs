@@ -1,10 +1,16 @@
 ﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Infrastructure
 {
   public static class MathHelper
   {
+    /// <summary>
+    /// Допустимая погрешность.
+    /// </summary>
+    public static float FloatOperationsError = 0.00005f; 
+    
     /// <summary>
     /// Выполняет нелинейную интерполяцию по формуле квадратичной кривой Безье.
     /// </summary>
@@ -35,6 +41,16 @@ namespace Infrastructure
 
       var value = Random.Range(min, max + 1);
       return value <= probability;
+    }
+
+    /// <summary>
+    /// Возвращает дистанцию по горизонтальной плоскости между двумя точкам.
+    /// </summary>
+    public static float GetDistanceByHorizontalPlane(Vector3 a, Vector3 b)
+    {
+      var a2d = new Vector2(a.x, a.z);
+      var b2d = new Vector2(b.x, b.z);
+      return Vector2.Distance(a2d, b2d);
     }
   }
 }

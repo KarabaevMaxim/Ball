@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - StairsTrigger
+  - Obstacle
   layers:
   - Default
   - TransparentFX
