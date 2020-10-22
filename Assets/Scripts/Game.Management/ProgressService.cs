@@ -2,7 +2,7 @@ using System;
 using Common.Game.Signals;
 using Zenject;
 
-namespace Game.GameManagement
+namespace Game.Management
 {
   public class ProgressService : IDisposable
   {

@@ -7,7 +7,7 @@ using Common.Game;
 using Common.Game.ObjectsModel;
 using Common.Game.Signals;
 using Common.Game.Spawners;
-using Game.GameManagement;
+using Game.Management;
 using Game.ObjectsModel;
 using Game.Obstacles;
 using UnityEngine;

@@ -1,4 +1,3 @@
-using Common;
 using Common.Game;
 using Common.Game.Props;
 using Common.Game.Signals;
@@ -6,7 +5,7 @@ using Common.Game.Spawners;
 using UnityEngine;
 using Zenject;
 
-namespace Game.GameManagement
+namespace Game.Management
 {
   /// <summary>
   /// Управляющий игровым режимом скрипт. 

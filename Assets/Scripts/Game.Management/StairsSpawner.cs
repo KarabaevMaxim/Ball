@@ -5,7 +5,7 @@ using Common.Game.Spawners;
 using UnityEngine;
 using Zenject;
 
-namespace Game.GameManagement
+namespace Game.Management
 {
   /// <summary>
   /// Спавнер сегментов лестницы.

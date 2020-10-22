@@ -4,7 +4,7 @@ using Common.Game.ObjectsModel;
 using Common.Game.Props;
 using UnityEngine;
 
-namespace Game.GameManagement.Props
+namespace Game.Management.Props
 {
   /// <summary>
   /// Настройки окружения в игровом режиме.

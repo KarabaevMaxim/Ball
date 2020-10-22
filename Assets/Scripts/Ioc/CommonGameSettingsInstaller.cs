@@ -1,5 +1,5 @@
 ﻿using Common.Game.Props;
-using Game.GameManagement.Props;
+using Game.Management.Props;
 using Game.Obstacles;
 using UnityEngine;
 using Zenject;
