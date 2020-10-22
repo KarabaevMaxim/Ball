@@ -1,3 +1,18 @@
-﻿{
-	"name": "Application.Management"
+{
+    "name": "Application.Management",
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:f50966adf0de54585b391a83683fd7f1",
+        "GUID:3f87efe9cde8c47f0a649afd76461f09",
+        "GUID:ef73ceb706e4c48a9a39db144bca06c6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -1,7 +1,5 @@
-using System;
 using Application.Storage;
 using Cinemachine;
-using Common;
 using Common.Application;
 using Common.Game;
 using Common.Game.ObjectsModel;
