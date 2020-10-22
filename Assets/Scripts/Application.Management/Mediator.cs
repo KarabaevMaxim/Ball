@@ -11,12 +11,11 @@ namespace Application.Management
 
     public void StartGame()
     {
-      _userDialogService.RequestText("Введите имя", name =>
+      _userDialogService.RequestText("Введите имя", async name =>
       {
-        _currentUserInfoService.RegisterAsync(name);
+        await _currentUserInfoService.RegisterAsync(name);
         LoadScene(Scene.Game);
       });
-      
     }
 
     public void RestartGame()
