@@ -2,7 +2,7 @@
 using Common.Game.ObjectsModel;
 using Common.Game.Props;
 using Common.Game.Signals;
-using ObjectsControlling.PlayerInput;
+using Game.ObjectsControlling.PlayerInput;
 using UnityEngine;
 using Zenject;
 

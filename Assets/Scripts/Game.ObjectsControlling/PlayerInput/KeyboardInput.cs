@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ObjectsControlling.PlayerInput
+namespace Game.ObjectsControlling.PlayerInput
 {
   /// <summary>
   /// Компонент ввода с клавиатуры.

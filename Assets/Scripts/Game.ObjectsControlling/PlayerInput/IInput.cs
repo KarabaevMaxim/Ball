@@ -1,6 +1,6 @@
 using System;
 
-namespace ObjectsControlling.PlayerInput
+namespace Game.ObjectsControlling.PlayerInput
 {
   public interface IInput
   {
