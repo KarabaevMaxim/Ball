@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Common.Application;
 using Zenject;
@@ -17,16 +18,21 @@ namespace Application.Management
 
     public User CurrentUser { get; private set; }
 
-    public Task RegisterAsync(string name)
+    public async Task RegisterAsync(string name)
     {
-      CurrentUser = new User
+      CurrentUser = (await _usersStorage.ReadAllAsync()).FirstOrDefault(u => u.Name.Equals(name));
+      
+      if (CurrentUser == null)
       {
-        Id = Guid.NewGuid(),
-        Name = name,
-        BestResult = 0
-      };
-
-      return _usersStorage.SaveAsync(CurrentUser);
+        CurrentUser = new User
+        {
+          Id = Guid.NewGuid(),
+          Name = name,
+          BestResult = 0
+        };
+        
+        await _usersStorage.SaveAsync(CurrentUser);
+      }
     }
 
     public async Task SaveResultAsync(int newResult)
