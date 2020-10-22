@@ -36,7 +36,7 @@ namespace Application.UI
       {
         var user = allUsers[index];
         var row = Instantiate(_rowPrefab, _rowsParent);
-        row.Initialize(index.ToString(), user.Name, user.BestResult.ToString());
+        row.Initialize(index++.ToString(), user.Name, user.BestResult.ToString());
         _rows.Add(row);
       }
     }

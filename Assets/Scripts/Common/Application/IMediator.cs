@@ -5,5 +5,7 @@ namespace Common.Application
     void StartGame();
 
     void RestartGame();
+
+    void OpenMenu();
   }
 }

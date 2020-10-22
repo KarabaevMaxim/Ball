@@ -23,6 +23,11 @@ namespace Application.Management
       LoadScene(Scene.Game);
     }
 
+    public void OpenMenu()
+    {
+      LoadScene(Scene.Menu);
+    }
+    
     private void LoadScene(Scene scene)
     {
       SceneManager.LoadScene(scene.ToString());
