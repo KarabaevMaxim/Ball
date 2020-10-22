@@ -10,12 +10,26 @@ namespace Application.UI
   {
     [SerializeField]
     private Button _playBtn = default;
+    
+    [SerializeField]
+    private Button _cleanBtn = default;
+
+    #region Зависимости
 
     private IMediator _mediator;
+    private IStorage<User> _userStorage;
+    private IUserDialogService _userDialogService;
+
+    #endregion
 
     private void Awake()
     {
       _playBtn.onClick.AddListener(() => _mediator.StartGame());
+      _cleanBtn.onClick.AddListener(() =>
+      {
+        _userStorage.InitializeDefaultData();
+        _userDialogService.ShowDialog("Прогресс успешно удален");
+      });
     }
 
     private void OnDestroy()
@@ -24,9 +38,11 @@ namespace Application.UI
     }
 
     [Inject]
-    private void Initialize(IMediator mediator)
+    private void Initialize(IMediator mediator, IStorage<User> userStorage, IUserDialogService userDialogService)
     {
       _mediator = mediator;
+      _userStorage = userStorage;
+      _userDialogService = userDialogService;
     }
   }
 }

@@ -1,13 +1,10 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Application.UI.Dialogs
 {
-  /// <summary>
-  /// Диалоговое окно запроса текста.
-  /// </summary>
-  public class RequestTextDialog : MonoBehaviour
+  public class SimpleDialog : MonoBehaviour
   {
     #region Поля
 
@@ -16,17 +13,14 @@ namespace Application.UI.Dialogs
     
     [SerializeField]
     private Button _applyBtn = default;
-    
-    [SerializeField]
-    private InputField _input = default;
 
-    private Action<string> _applyAction;
+    private Action _applyAction;
 
     #endregion
 
     #region Методы
 
-    public void Initialize(string message, Action<string> callback)
+    public void Initialize(string message, Action callback)
     {
       _messageText.text = message;
       _applyAction = callback;
@@ -35,7 +29,7 @@ namespace Application.UI.Dialogs
 
     private void OnApplyBtnClicked()
     {
-      _applyAction?.Invoke(_input.text);
+      _applyAction?.Invoke();
       _applyBtn.onClick.RemoveAllListeners();
       Destroy(gameObject);
     }

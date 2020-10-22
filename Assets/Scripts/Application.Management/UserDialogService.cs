@@ -1,5 +1,4 @@
 using System;
-using Application.UI;
 using Application.UI.Dialogs;
 using Common.Application;
 using UnityEngine;
@@ -12,7 +11,8 @@ namespace Application.Management
   public class UserDialogService : IUserDialogService
   {
     private RequestTextDialog _requestTextDialogPrefab;
-    
+    private SimpleDialog _simpleDialogPrefab;
+
     public void RequestText(string message, Action<string> callback)
     {
       var canvas = Object.FindObjectOfType<Canvas>();
@@ -20,10 +20,18 @@ namespace Application.Management
       dialog.Initialize(message, callback);
     }
 
+    public void ShowDialog(string message)
+    {
+      var canvas = Object.FindObjectOfType<Canvas>();
+      var dialog = Object.Instantiate(_simpleDialogPrefab, canvas.transform);
+      dialog.Initialize(message, null);
+    }
+
     [Inject]
-    private void Initialize(RequestTextDialog requestTextDialogPrefab)
+    private void Initialize(RequestTextDialog requestTextDialogPrefab, SimpleDialog simpleDialogPrefab)
     {
       _requestTextDialogPrefab = requestTextDialogPrefab;
+      _simpleDialogPrefab = simpleDialogPrefab;
     }
   }
 }

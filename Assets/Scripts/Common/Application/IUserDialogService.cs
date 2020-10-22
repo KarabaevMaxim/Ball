@@ -8,5 +8,7 @@ namespace Common.Application
   public interface IUserDialogService
   {
     void RequestText(string message, Action<string> callback);
+
+    void ShowDialog(string message);
   }
 }

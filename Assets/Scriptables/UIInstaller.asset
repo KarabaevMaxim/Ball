@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a136fcd7aa45b1a991888e0c30842c, type: 3}
   m_Name: UIInstaller
   m_EditorClassIdentifier: 
-  _requestTextDialog: {fileID: 5022001254682440648, guid: bd078a496d16f4fd78025d61648c47fa,
+  _requestTextDialogPrefab: {fileID: 5022001254682440648, guid: bd078a496d16f4fd78025d61648c47fa,
+    type: 3}
+  _simpleDialogPrefab: {fileID: 6744783117159308319, guid: 49b47b632b03b4a5abed088ca34182d6,
     type: 3}
