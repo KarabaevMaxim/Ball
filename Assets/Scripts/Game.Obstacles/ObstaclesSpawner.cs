@@ -29,7 +29,7 @@ namespace Game.Obstacles
     private Pool _pool;
     private SignalBus _signalBus;
     private IGameplayProps _gameplayProps;
-    private IGameManager _gameManager;
+    private IDifficultyManager _difficultyManager;
 
     #endregion
 
@@ -81,7 +81,7 @@ namespace Game.Obstacles
     {
       foreach (var localCoord in signal.Stairs.StairsCoords)
       {
-        var needSpawn = MathHelper.GetRandomWithProbability(_gameManager.CurrentDifficulty * 10);
+        var needSpawn = MathHelper.GetRandomWithProbability(_difficultyManager.CurrentDifficulty * 10);
 
         if (needSpawn)
         {
@@ -99,12 +99,12 @@ namespace Game.Obstacles
     #region Остальные методы
 
     [Inject]
-    private void Initialize(Pool pool, SignalBus signalBus, IGameplayProps gameplayProps, IGameManager gameManager)
+    private void Initialize(Pool pool, SignalBus signalBus, IGameplayProps gameplayProps, IDifficultyManager difficultyManager)
     {
       _pool = pool;
       _signalBus = signalBus;
       _gameplayProps = gameplayProps;
-      _gameManager = gameManager;
+      _difficultyManager = difficultyManager;
       _signalBus.Subscribe<StairsSpawnedSignal>(OnStairsSpawned);
     }
 
