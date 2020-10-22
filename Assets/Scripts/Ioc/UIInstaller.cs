@@ -1,10 +1,11 @@
 using Application.UI;
+using Application.UI.Dialogs;
 using UnityEngine;
 using Zenject;
 
 namespace Ioc
 {
-  [CreateAssetMenu(fileName = "UIInstaller", menuName = "Appliaction/UI")]
+  [CreateAssetMenu(fileName = "UIInstaller", menuName = "Application/UI")]
   public class UIInstaller : ScriptableObjectInstaller<UIInstaller>
   {
     [SerializeField]

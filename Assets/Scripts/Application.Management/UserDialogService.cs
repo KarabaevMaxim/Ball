@@ -1,5 +1,6 @@
 using System;
 using Application.UI;
+using Application.UI.Dialogs;
 using Common.Application;
 using UnityEngine;
 using Zenject;
@@ -11,8 +12,6 @@ namespace Application.Management
   public class UserDialogService : IUserDialogService
   {
     private RequestTextDialog _requestTextDialogPrefab;
-
-    private object _lastDialogResult;
     
     public void RequestText(string message, Action<string> callback)
     {

@@ -32,6 +32,8 @@ namespace Game.Obstacles
       _controller.StopBehaviour();
     }
 
+    public void SetActive(bool value) => gameObject.SetActive(value);
+    
     #endregion
     
     #region Остальные методы

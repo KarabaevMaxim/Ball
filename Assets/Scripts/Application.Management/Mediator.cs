@@ -1,10 +1,9 @@
 ﻿using Common.Application;
 using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace Application.Management
 {
-  public class Mediator // todo придумать более подходящее имя
+  public class Mediator : IMediator // todo придумать более подходящее имя
   {
     private readonly ICurrentUserInfoService _currentUserInfoService;
 
@@ -12,8 +11,12 @@ namespace Application.Management
 
     public void StartGame()
     {
-      _userDialogService.RequestText("Введите имя", name => _currentUserInfoService.RegisterAsync(name));
-      LoadScene(Scene.Game);
+      _userDialogService.RequestText("Введите имя", name =>
+      {
+        _currentUserInfoService.RegisterAsync(name);
+        LoadScene(Scene.Game);
+      });
+      
     }
 
     public void RestartGame()
@@ -25,7 +28,7 @@ namespace Application.Management
     {
       SceneManager.LoadScene(scene.ToString());
     }
-    
+
     public Mediator(ICurrentUserInfoService currentUserInfoService, IUserDialogService userDialogService)
     {
       _currentUserInfoService = currentUserInfoService;

@@ -33,6 +33,8 @@ namespace Game.Obstacles
 
     #endregion
 
+    private bool _prepared;
+    
     #region IObstaclesSpawner
 
     public IObstacle SpawnRandom(Vector3 position)
@@ -51,6 +53,15 @@ namespace Game.Obstacles
     {
       _pool.Despawn(obj);
       obj.OnDespawned();
+    }
+
+    public void Prepare()
+    {
+      if (!_prepared)
+      {
+        _pool.FillPool();
+        _prepared = true;
+      }
     }
 
     #endregion
@@ -107,21 +118,42 @@ namespace Game.Obstacles
 
     public class Pool
     {
+      private readonly Factory _factory;
+      private readonly ObstaclesProps _props;
+
       private readonly Dictionary<int, Queue<IObstacle>> _pool;
       private readonly IReadOnlyList<int> _ids;
       
       public IObstacle Spawn()
       {
         var obj = RandomSpawn(new List<int>(_ids.Count), 0);
-        (obj as MonoBehaviour)?.gameObject.SetActive(true);
+        obj.SetActive(true);
         return obj;
       }
 
       public void Despawn(IObstacle obj)
       {
-        (obj as MonoBehaviour).gameObject.SetActive(false);
+        obj.SetActive(false);
         _pool[obj.PrefabId].Enqueue(obj);
-      } 
+      }
+
+      public void FillPool()
+      {
+        foreach (var prefab in _props.ObstaclesPrefabs)
+        {
+          var obj = prefab as Object;
+          var id = obj.GetInstanceID();
+          _pool[id] = new Queue<IObstacle>(PoolCapacityForEachPrefab);
+
+          for (var i = 0; i < PoolCapacityForEachPrefab; i++)
+          {
+            var obs = _factory.Create(obj);
+            obs.PrefabId = id;
+            obs.SetActive(false);
+;            _pool[id].Enqueue(obs);
+          }
+        }
+      }
       
       private IObstacle RandomSpawn(ICollection<int> prevIds, int callsCount)
       {
@@ -151,22 +183,11 @@ namespace Game.Obstacles
       
       public Pool(Factory factory, ObstaclesProps props)
       {
-        _pool = new Dictionary<int, Queue<IObstacle>>(props.ObstaclesPrefabs.Count);
-        _ids = props.PrefabsIds;
+        _factory = factory;
+        _props = props;
         
-        foreach (var prefab in props.ObstaclesPrefabs)
-        {
-          var obj = prefab as Object;
-          var id = obj.GetInstanceID();
-          _pool[id] = new Queue<IObstacle>(PoolCapacityForEachPrefab);
-
-          for (var i = 0; i < PoolCapacityForEachPrefab; i++)
-          {
-            var obs = factory.Create(obj);
-            obs.PrefabId = id;
-            _pool[id].Enqueue(obs);
-          }
-        }
+        _pool = new Dictionary<int, Queue<IObstacle>>(_props.ObstaclesPrefabs.Count);
+        _ids = _props.PrefabsIds;
       }
     }
 

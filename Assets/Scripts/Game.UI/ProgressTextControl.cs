@@ -25,7 +25,7 @@ namespace Game.UI
 
     private void OnDestroy()
     {
-      _signalBus.Unsubscribe<ProgressChangedSignal>(OnProgressChanged);
+      _signalBus?.Unsubscribe<ProgressChangedSignal>(OnProgressChanged);
     }
 
     [Inject]

@@ -8,5 +8,7 @@ namespace Common.Game.Spawners
     IObstacle SpawnRandom(Vector3 position);
 
     void Despawn(IObstacle obj);
+
+    void Prepare();
   }
 }

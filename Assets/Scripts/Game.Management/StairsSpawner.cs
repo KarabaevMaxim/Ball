@@ -30,7 +30,8 @@ namespace Game.Management
 
     private Queue<StairsObject> _activeStairs;
     private StairsObject _lastStairs;
-
+    private bool _prepared;
+    
     #endregion
 
     #region IStairsSpawner
@@ -61,6 +62,15 @@ namespace Game.Management
       stairs.OnDespawned();
     }
 
+    public void Prepare()
+    {
+      if (!_prepared)
+      {
+        _pool.FillPool();
+        _prepared = true;
+      }
+    }
+
     #endregion
 
     #region Остальные методы
@@ -84,6 +94,8 @@ namespace Game.Management
     
     public class Pool
     {
+      private readonly Factory _factory;
+      private readonly IGameplayProps _props;
       private readonly Queue<StairsObject> _pool;
 
       public StairsObject Spawn()
@@ -98,20 +110,25 @@ namespace Game.Management
         obj.gameObject.SetActive(false);
         _pool.Enqueue(obj);
       }
-      
-      public Pool(Factory factory, IGameplayProps props)
-      {
-        _pool = new Queue<StairsObject>(20);
 
-        foreach (var prefab in props.StairsPrefabs)
+      public void FillPool()
+      {
+        foreach (var prefab in _props.StairsPrefabs)
         {
           for (var i = 0; i < PoolCapacityForeachPrefab; i++)
           {
-            var obj = factory.Create(prefab as Object);
+            var obj = _factory.Create(prefab as Object);
             obj.gameObject.SetActive(false);
             _pool.Enqueue(obj);
           }
         }
+      }
+      
+      public Pool(Factory factory, IGameplayProps props)
+      {
+        _factory = factory;
+        _props = props;
+        _pool = new Queue<StairsObject>(20);
       }
     }
 

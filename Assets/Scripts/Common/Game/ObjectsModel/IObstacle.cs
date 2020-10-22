@@ -11,5 +11,7 @@ namespace Common.Game.ObjectsModel
     void OnSpawned();
 
     void OnDespawned();
+
+    void SetActive(bool value);
   }
 }

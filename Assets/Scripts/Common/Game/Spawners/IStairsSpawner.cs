@@ -7,5 +7,7 @@ namespace Common.Game.Spawners
     void SpawnNext();
 
     void DespawnFirst();
+
+    void Prepare();
   }
 }

@@ -53,7 +53,8 @@ namespace Application.Storage
     
     public void InitializeDefaultData()
     {
-      var json = Serialize(Activator.CreateInstance<TEntity>());
+      // var json = Serialize(Activator.CreateInstance<TEntity>());
+      var json = Serialize(new List<TEntity>());
       WriteToFile(json);
     }
 
