@@ -30,6 +30,7 @@ namespace Ioc
       Container.DeclareSignal<StairsSpawnedSignal>();
       Container.DeclareSignal<StairPassedSignal>();
       Container.DeclareSignal<ProgressChangedSignal>();
+      Container.DeclareSignal<GameLoosedSignal>();
     }
 
     public override void Start()

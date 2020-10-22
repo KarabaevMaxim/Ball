@@ -8,6 +8,6 @@ namespace Common.Application
     
     public string Name { get; set; }
     
-    public int TotalResult { get; set; }
+    public int BestResult { get; set; }
   }
 }

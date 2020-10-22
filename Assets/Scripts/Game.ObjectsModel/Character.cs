@@ -1,5 +1,7 @@
+using Common.Application;
 using Common.Game.ObjectsModel;
 using Common.Game.Props;
+using Common.Game.Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -14,6 +16,7 @@ namespace Game.ObjectsModel
     private IJumpableObject _jumpableObject;
     private IGameplayProps _gameplayProps;
     private IController _controller;
+    private SignalBus _signalBus;
 
     #endregion
 
@@ -44,7 +47,7 @@ namespace Game.ObjectsModel
     private void OnTriggerEnter(Collider other)
     {
       if (other.CompareTag("Obstacle"))
-        SceneManager.LoadScene(0);
+        _signalBus.Fire<GameLoosedSignal>();
     }
 
     #endregion
@@ -52,9 +55,10 @@ namespace Game.ObjectsModel
     #region Остальные методы
 
     [Inject]
-    private void Initialize(IController controller)
+    private void Initialize(IController controller, SignalBus signalBus)
     {
       _controller = controller;
+      _signalBus = signalBus;
     }
 
     #endregion

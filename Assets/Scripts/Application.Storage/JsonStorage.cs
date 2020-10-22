@@ -20,6 +20,11 @@ namespace Application.Storage
     public void Save(TEntity entity)
     {
       var all = ReadAllInternal();
+      var old = all.FirstOrDefault(e => e.Id == entity.Id);
+
+      if (old != null)
+        all.Remove(old);
+
       all.Add(entity);
       var serialized = Serialize(all);
       // не проверяем на null, чтобы приложение упало, если возникнет такая ситуация
