@@ -28,7 +28,7 @@ namespace Application.Management
       get =>
         _currentUser ?? (_currentUser = new User
         {
-          Id = Guid.NewGuid(),
+          Id = Guid.Empty,
           Name = "Default user",
           BestResult = 0
         });

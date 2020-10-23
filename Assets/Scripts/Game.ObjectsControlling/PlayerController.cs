@@ -13,6 +13,8 @@ namespace Game.ObjectsControlling
   /// </summary>
   public class PlayerController : MonoBehaviour, IController
   {
+    private const float JumpTimeInSec = 0.5f;
+    
     #region Зависимости
 
     private IMovableObject _movableObject;
@@ -48,22 +50,35 @@ namespace Game.ObjectsControlling
     private void OnMoveLeft()
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
+      {
         if (_gameplayProps.MinLane < transform.position.x)
-          _movableObject.StartMove(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z), null);
+        {
+          var curPos = transform.position;
+          _movableObject.StartMove(new Vector3(curPos.x - 1, curPos.y, curPos.z), null);
+        }
+      }
     }
     
     private void OnMoveRight()
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
+      {
         if (_gameplayProps.MaxLane > transform.position.x)
-          _movableObject.StartMove(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), null);
+        {
+          var curPos = transform.position;
+          _movableObject.StartMove(new Vector3(curPos.x + 1, curPos.y, curPos.z), null);
+        }
+      }
     }
     
     private void OnJumpForward()
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
+      {
+        var curPos = transform.position;
         _jumpableObject.StartJump(
-        transform.position.y + 1, transform.position.z + 1, TimeSpan.FromSeconds(1), () => _signalBus.Fire<StairPassedSignal>());
+          curPos.y + 1, curPos.z + 1, TimeSpan.FromSeconds(JumpTimeInSec), () => _signalBus.Fire<StairPassedSignal>());
+      }
     }
 
     #endregion

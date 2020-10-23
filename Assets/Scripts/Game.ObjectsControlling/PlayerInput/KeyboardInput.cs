@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.ObjectsControlling.PlayerInput
 {
@@ -24,15 +25,20 @@ namespace Game.ObjectsControlling.PlayerInput
 
     private void Update()
     {
+      var keyboard = Keyboard.current;
+      
+      if (keyboard == null)
+        return;
+      
       if (Enabled)
       {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (keyboard.spaceKey.wasPressedThisFrame)
           JumpForward?.Invoke();
         
-        if (Input.GetKeyDown(KeyCode.A))
+        if (keyboard.aKey.wasPressedThisFrame)
           MoveLeft?.Invoke();
         
-        if (Input.GetKeyDown(KeyCode.D))
+        if (keyboard.dKey.wasPressedThisFrame)
           MoveRight?.Invoke();
       }
     }
