@@ -23,3 +23,4 @@ MonoBehaviour:
   _obstaclesProps:
     _obstaclesPrefabs:
     - {fileID: 4872629652825151677, guid: baae95717fb954e8082a144de1e13e32, type: 3}
+    - {fileID: 5997684190797895718, guid: e62db81f670c24fb6acfc792d15f7921, type: 3}

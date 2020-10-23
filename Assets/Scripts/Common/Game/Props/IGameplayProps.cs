@@ -6,9 +6,9 @@ namespace Common.Game.Props
 {
   public interface IGameplayProps
   {
-    int MinLine { get; }
+    int MinLane { get; }
 
-    int MaxLine { get; }
+    int MaxLane { get; }
     
     IEnumerable<IStairsObject> StairsPrefabs { get; }
     

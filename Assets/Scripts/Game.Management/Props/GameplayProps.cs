@@ -36,9 +36,9 @@ namespace Game.Management.Props
 
     #region Свойства
 
-    public int MinLine => _minLine;
+    public int MinLane => _minLine;
 
-    public int MaxLine => _maxLine;
+    public int MaxLane => _maxLine;
 
     public IEnumerable<IStairsObject> StairsPrefabs => _stairsPrefabs;
 

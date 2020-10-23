@@ -35,7 +35,11 @@ namespace Game.ObjectsModel.Movable
     /// <param name="targetPos">Конечная позиция. Компонента Y игнорируется.</param>
     public override void StartMove(Vector3 targetPos, Action callback)
     {
-      _moveCoroutine = StartCoroutine(Move(targetPos, callback));
+      if (!IsMoving)
+      {
+        _moveCoroutine = StartCoroutine(Move(targetPos, callback));
+        IsMoving = true;
+      }
     }
 
     public override void StopMove()
@@ -45,6 +49,8 @@ namespace Game.ObjectsModel.Movable
         StopCoroutine(_moveCoroutine);
         _moveCoroutine = null;
       }
+      
+      IsMoving = false;
     }
 
     #endregion
@@ -72,7 +78,7 @@ namespace Game.ObjectsModel.Movable
           currentPosition,
           new Vector3(targetPos.x, currentPosition.y, targetPos.z),
           delta);
-
+        
         var rcOrigin = new Vector3(currentPosition.x + .5f, currentPosition.y, currentPosition.z + .5f);
         
         if (Physics.RaycastNonAlloc(rcOrigin, Vector3.down, _buffer, .2f, _layerMask) == 0)

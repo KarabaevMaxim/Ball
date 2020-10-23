@@ -48,21 +48,22 @@ namespace Game.ObjectsControlling
     private void OnMoveLeft()
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
-        if (_gameplayProps.MinLine < transform.position.x)
+        if (_gameplayProps.MinLane < transform.position.x)
           _movableObject.StartMove(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z), null);
     }
     
     private void OnMoveRight()
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
-        if (_gameplayProps.MaxLine > transform.position.x)
+        if (_gameplayProps.MaxLane > transform.position.x)
           _movableObject.StartMove(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), null);
     }
     
     private void OnJumpForward()
     {
       if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
-        _jumpableObject.StartJump(transform.position.y + 1, transform.position.z + 1, TimeSpan.FromSeconds(1), () => _signalBus.Fire<StairPassedSignal>());
+        _jumpableObject.StartJump(
+        transform.position.y + 1, transform.position.z + 1, TimeSpan.FromSeconds(1), () => _signalBus.Fire<StairPassedSignal>());
     }
 
     #endregion

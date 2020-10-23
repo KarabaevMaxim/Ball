@@ -85,7 +85,7 @@ namespace Game.Obstacles
 
         if (needSpawn)
         {
-          var x = Random.Range(_gameplayProps.MinLine, _gameplayProps.MaxLine + 1);
+          var x = Random.Range(_gameplayProps.MinLane, _gameplayProps.MaxLane + 1);
           var obstacle = SpawnRandom(new Vector3(x, localCoord.Y + 1 + signal.Stairs.Position.y, localCoord.Z + signal.Stairs.Position.z));
           
           if (obstacle != null)
