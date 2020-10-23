@@ -32,6 +32,9 @@ namespace Game.Management.Props
     [SerializeField]
     private float _pseudoGravity;
 
+    [SerializeField]
+    private int _stairsToUpDifficulty;
+
     #endregion
 
     #region Свойства
@@ -48,11 +51,13 @@ namespace Game.Management.Props
 
     public float PseudoGravity => _pseudoGravity;
 
+    public int StairsToUpDifficulty => _stairsToUpDifficulty;
+
     #endregion
 
     #region Конструкторы
 
-    public GameplayProps(int minLine, int maxLine, List<StairsObject> stairsPrefabs, int startDifficulty, Vector3 playerStartPosition, float pseudoGravity)
+    public GameplayProps(int minLine, int maxLine, List<StairsObject> stairsPrefabs, int startDifficulty, Vector3 playerStartPosition, float pseudoGravity, int stairsToUpDifficulty)
     {
       _minLine = minLine;
       _maxLine = maxLine;
@@ -60,6 +65,7 @@ namespace Game.Management.Props
       _startDifficulty = startDifficulty;
       _playerStartPosition = playerStartPosition;
       _pseudoGravity = pseudoGravity;
+      _stairsToUpDifficulty = stairsToUpDifficulty;
     }
 
     #endregion

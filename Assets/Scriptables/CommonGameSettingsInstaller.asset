@@ -20,6 +20,7 @@ MonoBehaviour:
     _startDifficulty: 5
     _playerStartPosition: {x: 2, y: 6, z: 5}
     _pseudoGravity: 4
+    _stairsToUpDifficulty: 5
   _obstaclesProps:
     _obstaclesPrefabs:
     - {fileID: 4872629652825151677, guid: baae95717fb954e8082a144de1e13e32, type: 3}
