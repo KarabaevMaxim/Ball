@@ -18,7 +18,7 @@ MonoBehaviour:
     _stairsPrefabs:
     - {fileID: -2172449395104844272, guid: ac0897d3c314540d7845bfc2aaefc7b0, type: 3}
     _startDifficulty: 5
-    _playerStartPosition: {x: 2, y: 6, z: 5}
+    _playerStartPosition: {x: 2, y: 8, z: 7}
     _pseudoGravity: 4
     _stairsToUpDifficulty: 5
   _obstaclesProps:

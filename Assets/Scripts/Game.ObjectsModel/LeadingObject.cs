@@ -1,4 +1,4 @@
-using Common.Game.Spawners;
+using Common.Game.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -9,21 +9,20 @@ namespace Game.ObjectsModel
   /// </summary>
   public class LeadingObject : MonoBehaviour
   {
-    private IStairsSpawner _stairsSpawner;
+    private SignalBus _signalBus;
 
     private void OnTriggerEnter(Collider other)
     {
       if (other.CompareTag("StairsTrigger"))
       {
-        _stairsSpawner.DespawnFirst();
-        _stairsSpawner.SpawnNext();
+        _signalBus.Fire<LeadingObjectPassedStairsBlock>();
       }
     }
 
     [Inject]
-    private void Initialize(IStairsSpawner stairsSpawner)
+    private void Initialize(SignalBus signalBus)
     {
-      _stairsSpawner = stairsSpawner;
+      _signalBus = signalBus;
     }
   }
 }

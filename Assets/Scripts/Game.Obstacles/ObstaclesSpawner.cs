@@ -79,6 +79,9 @@ namespace Game.Obstacles
 
     private void OnStairsSpawned(StairsSpawnedSignal signal)
     {
+      if (!signal.NeedSpawnObstacles)
+        return;
+      
       foreach (var localCoord in signal.Stairs.StairsCoords)
       {
         var needSpawn = MathHelper.GetRandomWithProbability(_difficultyManager.CurrentDifficulty * 10);
