@@ -27,12 +27,14 @@ namespace Game.Management
       _stairsCounter++;
 
       if (_stairsCounter >= _gameplayProps.StartDifficulty)
+      {
         if (_currentDifficulty < 10) // 10 - максимальная сложность
         {
           _currentDifficulty++;
           Debug.Log($"Сложность увеличена. Сложность: {_currentDifficulty}");
           _stairsCounter = 0;
         }
+      }
     }
     
     [Inject]
