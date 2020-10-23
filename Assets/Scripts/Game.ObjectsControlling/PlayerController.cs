@@ -13,7 +13,7 @@ namespace Game.ObjectsControlling
   /// </summary>
   public class PlayerController : MonoBehaviour, IController
   {
-    private const float JumpTimeInSec = 0.5f;
+    private const float JumpTimeInSec = .5f;
     
     #region Зависимости
 
@@ -49,7 +49,7 @@ namespace Game.ObjectsControlling
 
     private void OnMoveLeft()
     {
-      if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
+      if (!_movableObject.IsMoving)
       {
         if (_gameplayProps.MinLane < transform.position.x)
         {
@@ -61,7 +61,7 @@ namespace Game.ObjectsControlling
     
     private void OnMoveRight()
     {
-      if (!_jumpableObject.IsJumping && !_movableObject.IsMoving)
+      if (!_movableObject.IsMoving)
       {
         if (_gameplayProps.MaxLane > transform.position.x)
         {

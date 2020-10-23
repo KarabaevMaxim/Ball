@@ -16,7 +16,7 @@ namespace Game.Management
   {
     #region Константы
 
-    private const int PoolCapacityForeachPrefab = 20;
+    private const int PoolCapacityForEachPrefab = 20;
     private const int StartStairsBlocksCount = 4;
     private const int StairsBlocksWithoutObstacles = 3;
     private const int StairsBlocksBehindLeadingObject = 2;
@@ -141,7 +141,7 @@ namespace Game.Management
       {
         foreach (var prefab in _props.StairsPrefabs)
         {
-          for (var i = 0; i < PoolCapacityForeachPrefab; i++)
+          for (var i = 0; i < PoolCapacityForEachPrefab; i++)
           {
             var obj = _factory.Create(prefab as Object);
             obj.gameObject.SetActive(false);

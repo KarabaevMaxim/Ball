@@ -34,8 +34,8 @@ namespace Game.ObjectsModel.Jumpable
       while (step <= timeInSec)
       {
         step += Time.deltaTime;
-        var newY = MathHelper.Bezier(startY, middleY, targetY, step / timeInSec);
-        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        var y = MathHelper.Bezier(startY, middleY, targetY, step / timeInSec);
+        transform.position = new Vector3(transform.position.x, y, transform.position.z);
         yield return null;
       }
     
@@ -53,9 +53,9 @@ namespace Game.ObjectsModel.Jumpable
       {
         step += Time.deltaTime;
         var calculatedStep = step / (float) jumpTime.TotalSeconds;
-        var newY = MathHelper.Bezier(startPosition.y, middleY, targetY, calculatedStep);
-        var newZ = Mathf.Lerp(startPosition.z, targetZ, calculatedStep);
-        transform.position = new Vector3(transform.position.x, newY, newZ);
+        var y = MathHelper.Bezier(startPosition.y, middleY, targetY, calculatedStep);
+        var z = Mathf.Lerp(startPosition.z, targetZ, calculatedStep);
+        transform.position = new Vector3(transform.position.x, y, z);
         yield return null;
       }
 

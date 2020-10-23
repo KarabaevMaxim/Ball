@@ -35,7 +35,9 @@ namespace Game.ObjectsModel.Movable
       while (step <= time)
       {
         step += Time.deltaTime;
-        transform.position = Vector3.Lerp(startPos, targetPos, step / time);
+        var x = Mathf.Lerp(startPos.x, targetPos.x, step / time);
+        var z = Mathf.Lerp(startPos.z, targetPos.z, step / time);
+        transform.position = new Vector3(x, transform.position.y, z);
         yield return null;
       }
 
