@@ -17,7 +17,7 @@ namespace Game.Management
     #region Константы
 
     private const int PoolCapacityForeachPrefab = 20;
-    private const int StartStairsBlocksCount = 5;
+    private const int StartStairsBlocksCount = 4;
     private const int StairsBlocksWithoutObstacles = 3;
     private const int StairsBlocksBehindLeadingObject = 2;
 
