@@ -17,7 +17,7 @@ namespace Game.Management
 
     #region Свойства
 
-    public int TotalStairs { get; private set; }
+    public int TotalPoints { get; private set; }
 
     #endregion
 
@@ -32,8 +32,9 @@ namespace Game.Management
 
     private void OnStairPassed()
     {
-      TotalStairs += Mathf.RoundToInt(_difficultyManager.CurrentDifficulty / 2.0f);
-      _signalBus.Fire(new ProgressChangedSignal(TotalStairs));
+      var pointsToAdd = Mathf.RoundToInt(_difficultyManager.CurrentDifficulty / 2.0f);
+      TotalPoints += pointsToAdd <= 0 ? 1 : pointsToAdd;
+      _signalBus.Fire(new ProgressChangedSignal(TotalPoints));
     }
     
     public ProgressService(SignalBus signalBus, IDifficultyManager difficultyManager)

@@ -51,7 +51,7 @@ namespace Game.Management
 
     private void OnGameLoosed()
     {
-      _currentUserInfoService.SaveResultAsync(_progressService.TotalStairs);
+      _currentUserInfoService.SaveResultAsync(_progressService.TotalPoints);
       _mediator.RestartGame();
     }
 

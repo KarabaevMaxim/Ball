@@ -4,12 +4,10 @@ using UnityEngine;
 
 namespace Application.UI.NotImplemented
 {
+  [Obsolete("Не доделано")]
   [ExecuteInEditMode]
   public class HStack : MonoBehaviour
   {
-    [SerializeField]
-    private float _spacing = default;
-    
     [SerializeField]
     private Direction _direction = default;
     

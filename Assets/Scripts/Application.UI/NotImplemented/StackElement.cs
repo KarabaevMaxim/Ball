@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace Application.UI.NotImplemented
 {
+  [Obsolete(nameof(HStack) + " не реализован")]
   public class StackElement : MonoBehaviour
   {
     [SerializeField, Range(0, 1)]

@@ -47,7 +47,7 @@ namespace Application.UI
       BackBtnClicked?.Invoke();
       _rows.ForEach(row => Destroy(row.gameObject));
       _backBtn.onClick.RemoveAllListeners();
-
+      _rows.Clear();
     }
 
     [Inject]
