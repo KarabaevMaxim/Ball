@@ -17,10 +17,10 @@ MonoBehaviour:
     _maxLine: 3
     _stairsPrefabs:
     - {fileID: -2172449395104844272, guid: ac0897d3c314540d7845bfc2aaefc7b0, type: 3}
-    _startDifficulty: 5
+    _startDifficulty: 1
     _playerStartPosition: {x: 2, y: 8, z: 7}
     _pseudoGravity: 4
-    _stairsToUpDifficulty: 5
+    _stairsToUpDifficulty: 15
   _obstaclesProps:
     _obstaclesPrefabs:
     - {fileID: 4872629652825151677, guid: baae95717fb954e8082a144de1e13e32, type: 3}

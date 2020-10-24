@@ -26,7 +26,7 @@ namespace Game.Management
     {
       _stairsCounter++;
 
-      if (_stairsCounter >= _gameplayProps.StartDifficulty)
+      if (_stairsCounter >= _gameplayProps.StairsToUpDifficulty)
       {
         if (_currentDifficulty < 10) // 10 - максимальная сложность
         {
