@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "3300f7c45042931b",
         "name": "com.DefaultCompany.Ball",
-        "processId": 28961,
+        "processId": 9625,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,12 @@
             "deviceId": "3300f7c45042931b",
             "name": "com.DefaultCompany.Ball",
             "processId": 28961,
+            "exited": false
+        },
+        {
+            "deviceId": "3300f7c45042931b",
+            "name": "com.DefaultCompany.Ball",
+            "processId": 9625,
             "exited": false
         }
     ],
