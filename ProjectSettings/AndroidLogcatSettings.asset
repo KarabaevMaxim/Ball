@@ -2,8 +2,8 @@
     "m_SelectedDeviceId": "3300f7c45042931b",
     "m_SelectedPackage": {
         "deviceId": "3300f7c45042931b",
-        "name": "com.DefaultCompany.Ball",
-        "processId": 9625,
+        "name": "com.Karabaev.Ball",
+        "processId": 15141,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -48,6 +48,18 @@
             "deviceId": "3300f7c45042931b",
             "name": "com.DefaultCompany.Ball",
             "processId": 9625,
+            "exited": false
+        },
+        {
+            "deviceId": "3300f7c45042931b",
+            "name": "com.DefaultCompany.Ball",
+            "processId": 13159,
+            "exited": true
+        },
+        {
+            "deviceId": "3300f7c45042931b",
+            "name": "com.Karabaev.Ball",
+            "processId": 15141,
             "exited": false
         }
     ],

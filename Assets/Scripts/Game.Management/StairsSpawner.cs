@@ -18,7 +18,7 @@ namespace Game.Management
 
     private const int PoolCapacityForEachPrefab = 20;
     private const int StartStairsBlocksCount = 4;
-    private const int StairsBlocksWithoutObstacles = 3;
+    private const int StairsBlocksWithoutObstacles = 2;
     private const int StairsBlocksBehindLeadingObject = 2;
 
     #endregion
