@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "3300f7c45042931b",
     "m_SelectedPackage": {
-        "deviceId": "3300f7c45042931b",
-        "name": "com.DefaultCompany.Ball",
-        "processId": 16189,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,18 @@
             "deviceId": "3300f7c45042931b",
             "name": "com.DefaultCompany.Ball",
             "processId": 16189,
+            "exited": true
+        },
+        {
+            "deviceId": "3300f7c45042931b",
+            "name": "com.DefaultCompany.Ball",
+            "processId": 24695,
+            "exited": true
+        },
+        {
+            "deviceId": "3300f7c45042931b",
+            "name": "com.sec.android.app.easylauncher",
+            "processId": 4467,
             "exited": false
         }
     ],

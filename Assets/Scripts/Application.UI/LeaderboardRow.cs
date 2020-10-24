@@ -1,4 +1,4 @@
-using UnityEngine;o
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Application.UI
